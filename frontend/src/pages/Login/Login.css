@@ -1,0 +1,171 @@
+:root {
+  --primary-color: #4361ee;
+  --primary-hover: #3a56d4;
+  --secondary-color: #3a0ca3;
+  --accent-color: #f72585;
+  --light-gray: #f8f9fa;
+  --dark-gray: #6c757d;
+  --text-color: #333;
+  --border-color: #e0e0e0;
+}
+
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  padding: 2rem;
+  margin-bottom: 0;
+}
+
+.login-container.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.login-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.login-header h1 {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.login-header p {
+  color: var(--dark-gray);
+  font-size: 1rem;
+}
+
+.form-control-lg {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s;
+}
+
+.form-control-lg:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.15);
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  font-size: 0.85rem;
+}
+
+.form-group-animate {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-button {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  height: 3rem;
+  transition: all 0.3s;
+}
+
+.login-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.capslock-warning {
+  color: #dc3545;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Checkbox Lembrar-me */
+.remember-me-container {
+  display: flex;
+  align-items: center;
+}
+
+.remember-checkbox {
+  margin: 0;
+}
+
+.remember-checkbox .form-check-input {
+  width: 1.2em;
+  height: 1.2em;
+  margin-top: 0;
+  margin-right: 0.5rem;
+}
+
+.remember-checkbox .form-check-label {
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+}
+
+/* Links */
+.forgot-password-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.forgot-password-link:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.register-container {
+  margin-top: 1.5rem;
+}
+
+.register-text {
+  color: var(--dark-gray);
+  font-size: 0.95rem;
+}
+
+/* Esconde o footer */
+footer {
+  display: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1rem;
+  }
+  
+  .login-card {
+    padding: 1.5rem;
+  }
+  
+  .login-header h1 {
+    font-size: 1.5rem;
+  }
+}

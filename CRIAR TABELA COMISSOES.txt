@@ -1,0 +1,11 @@
+CREATE TABLE comissoes (
+    id_comissao INT(11) NOT NULL AUTO_INCREMENT,
+    valor DECIMAL(10,2) NOT NULL,
+    data_pagamento DATE NOT NULL,
+    status ENUM('pix', 'credito') NOT NULL,
+    id_associado CHAR(11) NOT NULL,  
+    PRIMARY KEY (id_comissao),
+    FOREIGN KEY (id_associado) REFERENCES associados(cpf)  
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);

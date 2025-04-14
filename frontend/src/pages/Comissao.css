@@ -1,0 +1,63 @@
+.comissao-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .message {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+  }
+  
+  .comissao-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .comissao-table th, .comissao-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .comissao-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .status-pago {
+    color: green;
+  }
+  
+  .status-pendente {
+    color: red;
+  }
+  
+  .btn-pagar {
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-pagar:hover {
+    background-color: #218838;
+  }
+  

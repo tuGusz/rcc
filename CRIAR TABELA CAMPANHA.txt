@@ -1,0 +1,11 @@
+CREATE TABLE CAMPANHA (
+    c_id INT AUTO_INCREMENT PRIMARY KEY,
+    c_nome VARCHAR(100),
+    c_local VARCHAR(150),
+    c_descricao VARCHAR(255),
+    c_data_inicio DATETIME,
+    c_data_fim DATETIME
+);
+
+//Se receber um erro na hora de registrar | Não é c_desc -> c_descricao
+ALTER TABLE CAMPANHA CHANGE c_desc c_descricao VARCHAR(255);

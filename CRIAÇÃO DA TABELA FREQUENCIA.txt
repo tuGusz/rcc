@@ -1,0 +1,8 @@
+CREATE TABLE frequencias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cpf_associado CHAR(11) NOT NULL,
+    campanha_id INT NOT NULL,
+    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (cpf_associado) REFERENCES associados(cpf),
+    FOREIGN KEY (campanha_id) REFERENCES campanha(C_id)
+);

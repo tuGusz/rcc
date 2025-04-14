@@ -1,0 +1,87 @@
+.navbar {
+    background-color: #2c3e50;
+    color: white;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    padding: 0.7rem;
+}
+
+.hamburguer-icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburguer-icon .line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #2c3e50;
+    transition: left 0.3s ease;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-menu .side-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid white;;
+}
+
+.side-menu .side-cabecalho li {
+    font-size: 30px;
+}
+
+.side-menu ul li {
+    margin: 15px 0;
+    cursor: pointer;
+}
+.side-menu ul li:hover {
+    color: #7a7a7a;
+    transition: 0.2s;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.navbar-list {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-list img {
+    width: 30px;
+}
+
+.navbar-list #icon-mimosa {
+    width: 40px;
+    border-radius: 10px;
+}
+
+.link-hamburg {
+    color: white;
+}

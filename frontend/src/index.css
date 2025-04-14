@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Verdana, sans-serif;
+  background-color: #d8d8d8;
+}
+
+a {
+  color: black;
+  text-decoration: none ;
+
+}

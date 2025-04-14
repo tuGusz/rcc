@@ -1,0 +1,92 @@
+.campanha-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.form-campanha {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #007bff;
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+.btn-cadastrar {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-cadastrar:hover {
+  background-color: #0056b3;
+  transform: scale(1.03);
+}
+
+.btn-cadastrar:active {
+  background-color: #003d82;
+}
+
+@media (max-width: 768px) {
+  .campanha-container {
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 20px;
+  }
+
+  .btn-cadastrar {
+      font-size: 14px;
+  }
+}
