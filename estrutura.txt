@@ -1,0 +1,114 @@
+-- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
+--
+-- Host: localhost    Database: rotaract_db
+-- ------------------------------------------------------
+-- Server version	5.5.5-10.4.32-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `associados`
+--
+
+DROP TABLE IF EXISTS `associados`;
+CREATE TABLE `associados` (
+  `cpf` char(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `endereco` varchar(200) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  `status` enum('Ativo','Inativo') DEFAULT 'Ativo',
+  `data_nascimento` date DEFAULT NULL,
+  `foto` text DEFAULT NULL,
+  `data_cadastro` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`cpf`),
+  UNIQUE KEY `email` (`email`)
+) 
+
+--
+-- Table structure for table `campanha`
+--
+
+DROP TABLE IF EXISTS `campanha`;
+CREATE TABLE `campanha` (
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `c_nome` varchar(100) DEFAULT NULL,
+  `c_local` varchar(150) DEFAULT NULL,
+  `c_descricao` varchar(255) DEFAULT NULL,
+  `c_data_inicio` datetime DEFAULT NULL,
+  `c_data_fim` datetime DEFAULT NULL,
+  PRIMARY KEY (`c_id`)
+) 
+
+--
+-- Table structure for table `frequencias`
+--
+
+DROP TABLE IF EXISTS `frequencias`;
+CREATE TABLE `frequencias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cpf_associado` char(11) NOT NULL,
+  `campanha_id` int(11) NOT NULL,
+  `data_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `cpf_associado` (`cpf_associado`),
+  KEY `campanha_id` (`campanha_id`),
+  CONSTRAINT `frequencias_ibfk_1` FOREIGN KEY (`cpf_associado`) REFERENCES `associados` (`cpf`),
+  CONSTRAINT `frequencias_ibfk_2` FOREIGN KEY (`campanha_id`) REFERENCES `campanha` (`c_id`)
+) 
+
+--
+-- Table structure for table `mensalidades`
+--
+
+DROP TABLE IF EXISTS `mensalidades`;
+CREATE TABLE `mensalidades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` text NOT NULL,
+  `descricao` text NOT NULL,
+  `valor` decimal(10,2) NOT NULL,
+  `dataVencimento` datetime NOT NULL,
+  `status` varchar(20) DEFAULT 'Pendente',
+  PRIMARY KEY (`id`)
+)
+
+--
+-- Table structure for table `produtos`
+--
+
+DROP TABLE IF EXISTS `produtos`;
+CREATE TABLE `produtos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `unidade` varchar(50) DEFAULT NULL,
+  `detalhes` text DEFAULT NULL,
+  `data` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) 
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password_hash` varchar(255) DEFAULT NULL,
+  `role` enum('Administrador','Moderador','Membro') DEFAULT 'Membro',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) 
+
+-- Dump completed on 2025-04-13 22:18:12

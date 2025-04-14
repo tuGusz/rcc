@@ -23,17 +23,17 @@ class AssociadoController {
     }
 
     async buscarPorId(req, res) {
-        const { cpf } = req.params; // Recebe o CPF do parâmetro da URL
+        const { cpf } = req.params;  
         try {
-            console.log(cpf); // Verifique o valor do CPF
+            console.log(cpf);  
 
-            const resultado = await associado.obterPorId(cpf); // Busca pelo CPF
+            const resultado = await associado.obterPorId(cpf);  
             if (!resultado) {
-                return res.status(404).json({ erro: "Associado não encontrado" }); // Caso não encontre
+                return res.status(404).json({ erro: "Associado não encontrado" });  
             }
-            res.status(200).json(resultado); // Retorna o associado
+            res.status(200).json(resultado);  
         } catch (err) {
-            res.status(500).json({ erro: err.message }); // Erro do servidor
+            res.status(500).json({ erro: err.message });  
         }
     }
     

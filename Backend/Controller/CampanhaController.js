@@ -3,7 +3,6 @@ import Campanha from "../Model/Entidades/Campanha.js";
 const campanha = new Campanha();
 
 class CampanhaController {
-    // Obter todas as campanhas
     async obterTodos(req, res) {
         try {
             const lista = await campanha.obterTodos();
