@@ -13,6 +13,7 @@ import mensalidadeRoutes from "./Routes/MensalidadeRoutes.js";
 import comissaoRoutes from "./Routes/ComissaoRoutes.js"
 import frequenciaRoutes from './Routes/FrequenciaRoutes.js';
 import associadoRoutes from './Routes/AssociadoRoutes.js'; 
+import CaixaRoutes from './Routes/CaixaRoutes.js'; 
 
 const app = express();
 const port = 3002;
@@ -31,6 +32,7 @@ app.use(mensalidadeRoutes);
 app.use(comissaoRoutes);
 app.use(frequenciaRoutes);
 app.use(associadoRoutes);
+app.use(CaixaRoutes);
 
 app.listen(port, () => {
     console.log(`Rodando na porta ${port}`)

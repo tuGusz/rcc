@@ -1,0 +1,242 @@
+/* Estilo geral da página */
+.caixa-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Botões de abrir caixa */
+  .abrir-btn {
+    background-color: #4CAF50;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .abrir-btn:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilos dos botões dentro das tabelas */
+  .add-btn {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .remove-btn {
+    background-color: #FF5733;
+    color: white;
+  }
+  
+  .add-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .remove-btn:hover {
+    background-color: #e64a19;
+  }
+  
+  /* Estilizando os botões de fechamento */
+  .fechar-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .fechar-btn:hover {
+    background-color: #e53935;
+  }
+  
+ /* Modais */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-overlay.show {
+    display: flex;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%; /* Garantir que o modal não ultrapasse a tela */
+    box-sizing: border-box;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .modal-header h5 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .modal-footer button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancel {
+    background-color: #ccc;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  .cancel:hover {
+    background-color: #999;
+  }
+  
+  .confirm {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .confirm:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilo dos inputs no modal */
+  .modal-content input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .modal-content input[type="number"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+  }
+  
+  .modal-content input[type="number"]::placeholder {
+    color: #bbb;
+  }
+  
+  /* Ajuste no botão de fechamento */
+  .fechar-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .fechar-btn:hover {
+    background-color: #e53935;
+  }
+  
+  /* Estilo das tabelas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  table th, table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Caixas Abertos */
+  section h2 {
+    color: #333;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  section table {
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+  }
+  
+  section table td {
+    color: #333;
+  }
+  
+  section table td.acoes button {
+    margin: 5px;
+  }
+  
+  section table.disabled td {
+    color: #bbb;
+  }
+  
+  section table.disabled td button {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  section table.disabled td button:hover {
+    background-color: #ccc;
+  }
+  
+  /* Entrada de valores */
+  .valor-input {
+    width: 100px;
+    padding: 8px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  

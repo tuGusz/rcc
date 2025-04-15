@@ -42,6 +42,12 @@ export default function CardsAtalho() {
                 </Link>
                 </div>
 
+                <div className="card">
+                    <Link to="/caixas">
+                        <h3>Gerenciar Caixa</h3>
+                    </Link>
+                </div>
+                
             </div>
         </>
     )

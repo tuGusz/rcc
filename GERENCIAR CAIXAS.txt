@@ -1,0 +1,20 @@
+CREATE TABLE caixas (
+    id_caixa INT(11) NOT NULL AUTO_INCREMENT,
+    data_abertura DATETIME NOT NULL,
+    data_fechamento DATETIME DEFAULT NULL,
+    valor_inicial DECIMAL(10,2) NOT NULL,
+    valor_final DECIMAL(10,2) DEFAULT NULL,
+    status VARCHAR(20) NOT NULL,
+    id_gestao INT(11) NOT NULL,
+    PRIMARY KEY (id_caixa)
+);
+
+CREATE TABLE caixa_movimentacoes (
+    id_movimentacao INT(11) NOT NULL AUTO_INCREMENT,
+    id_caixa INT(11) NOT NULL,
+    tipo ENUM('adicionar', 'retirar') NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    data_movimentacao DATETIME DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY (id_movimentacao),
+    FOREIGN KEY (id_caixa) REFERENCES caixas(id_caixa)
+);

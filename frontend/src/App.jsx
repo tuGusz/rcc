@@ -10,8 +10,8 @@ import GerenciarProdutos from './pages/GerenciarTiposProdutos';
 import GerenciarMensalidades from './pages/Mensalidades';
 import FormAssociados from './pages/Associados';
 import Comissao from './pages/Comissao';
-import PrivateRoute from './components/PrivateRoute';
 import Cadastro from './pages/Cadastro';  // Componente de cadastro
+import Caixas from './pages/Caixas';
 
 import './App.css'; // Certifique-se de ter estilos apropriados
 
@@ -45,6 +45,7 @@ function App() {
             <Route path="/netflix-ta-cara-meus-anjos" element={user ? <GerenciarMensalidades /> : <Navigate to="/login" />} />
             <Route path="/associado" element={user ? <FormAssociados /> : <Navigate to="/login" />} />
             <Route path="/comissao" element={user ? <Comissao /> : <Navigate to="/login" />} />
+            <Route path="/caixas" element={user ? <Caixas /> : <Navigate to="/login" />} />
           </Routes>
         </div>
       </div>

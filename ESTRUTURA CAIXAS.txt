@@ -1,0 +1,142 @@
+🔧 Camada Controller – CaixaController
+Essa é a camada responsável por receber as requisições HTTP, tratar os dados de entrada e retornar as respostas. Cada método aqui é uma rota da sua API.
+
+1. abrir(req, res)
+Objetivo: Abre um novo caixa.
+
+Como funciona:
+
+Recebe dataAbertura, valorInicial e idGestao do req.body.
+
+Cria um novo objeto de caixa com status: "aberto" e valorFinal igual ao valor inicial.
+
+Chama caixa.abrirCaixa() (na camada de model) para inserir no banco.
+
+Retorna resposta de sucesso se inserido corretamente.
+
+2. inserirMovimentacao(req, res)
+Objetivo: Realiza uma movimentação de valor (adicionar ou retirar) em um caixa específico.
+
+Como funciona:
+
+Recebe id (ID do caixa) via req.params, e valor, tipo via req.body.
+
+Se o tipo for adicionar, chama caixa.adicionarValor().
+
+Se for retirar, chama caixa.retirarValor().
+
+Valida se o caixa existe, está aberto e se tem saldo suficiente (no caso de retirada).
+
+Retorna mensagens de sucesso ou erro apropriadas.
+
+3. fechar(req, res)
+Objetivo: Fecha um caixa existente.
+
+Como funciona:
+
+Recebe o id via req.params e dataFechamento, valorFinal via req.body.
+
+Chama caixa.fecharCaixa() para atualizar o banco, trocando o status para "fechado".
+
+Retorna sucesso se encontrado e atualizado.
+
+4. listarTodos(req, res)
+Objetivo: Lista todos os caixas cadastrados no banco.
+
+Como funciona:
+
+Chama caixa.obterTodos() que busca todos os registros na tabela CAIXAS.
+
+Retorna a lista no JSON da resposta.
+
+5. listarMovimentacoes(req, res)
+Objetivo: Lista todas as movimentações de um caixa específico.
+
+Como funciona:
+
+Recebe id do caixa por req.params.
+
+Chama caixa.obterMovimentacoes(id).
+
+Retorna as movimentações ordenadas por data (mais recente primeiro).
+
+6. listarTodasMovimentacoes(req, res)
+Objetivo: Lista todas as movimentações de todos os caixas.
+
+Como funciona:
+
+Chama caixa.obterTodasMovimentacoes().
+
+Retorna todas as movimentações do sistema.
+
+📦 Camada Model – Caixa
+Essa camada representa a lógica de negócio e as operações diretas no banco de dados.
+
+1. abrirCaixa(caixa)
+Objetivo: Insere um novo caixa no banco de dados.
+
+Como funciona:
+
+Recebe os dados do caixa como objeto.
+
+Executa INSERT INTO CAIXAS(...) VALUES(...).
+
+2. adicionarValor(idCaixa, valor)
+Objetivo: Adiciona um valor ao caixa e registra a movimentação.
+
+Como funciona:
+
+Atualiza o valor_final do caixa somando o valor recebido.
+
+Valida se o caixa está aberto.
+
+Se sucesso, chama registrarMovimentacao() com tipo 'adicionar'.
+
+3. retirarValor(idCaixa, valor)
+Objetivo: Retira um valor do caixa, se houver saldo suficiente, e registra a movimentação.
+
+Como funciona:
+
+Atualiza o valor_final do caixa subtraindo o valor.
+
+Só realiza se valor_final >= valor.
+
+Se sucesso, chama registrarMovimentacao() com tipo 'retirar'.
+
+4. registrarMovimentacao(idCaixa, valor, tipo)
+Objetivo: Registra uma movimentação na tabela CAIXA_MOVIMENTACOES.
+
+Como funciona:
+
+Executa INSERT INTO CAIXA_MOVIMENTACOES(...) com tipo, valor e id_caixa.
+
+5. fecharCaixa(idCaixa, { dataFechamento, valorFinal })
+Objetivo: Fecha um caixa alterando o status e registrando a data e valor final.
+
+Como funciona:
+
+Executa UPDATE no caixa com os novos dados.
+
+Altera status para 'fechado'.
+
+6. obterTodos()
+Objetivo: Retorna todos os caixas cadastrados.
+
+Como funciona:
+
+Executa SELECT * FROM CAIXAS.
+
+7. obterMovimentacoes(idCaixa)
+Objetivo: Retorna as movimentações de um caixa específico.
+
+Como funciona:
+
+Executa SELECT * FROM CAIXA_MOVIMENTACOES WHERE id_caixa = ? ORDER BY data DESC.
+
+8. obterTodasMovimentacoes()
+Objetivo: Retorna todas as movimentações de todos os caixas.
+
+Como funciona:
+
+Executa SELECT * FROM CAIXA_MOVIMENTACOES ORDER BY data DESC.
+
