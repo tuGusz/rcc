@@ -1,6 +1,9 @@
 import jwt from 'jsonwebtoken';
 import authServices from "../../Services/userServices.js";
 import { User } from "../../Model/Entidades/userModel.js";
+ import dotenv from 'dotenv';
+ dotenv.config();
+ 
  
 export const getCurrentUser = async (req, res) => {
   try {
@@ -32,7 +35,7 @@ export const autenticarToken = (req, res, next) => {
   }
 
   try {
-    const tokenSemBearer = token.replace('Bearer ', ''); // Removendo "Bearer " caso exista
+    const tokenSemBearer = token.replace('Bearer ', '');  
     const usuarioDecodificado = jwt.verify(tokenSemBearer, process.env.JWT_SECRET);
     req.usuario = usuarioDecodificado;
     next();

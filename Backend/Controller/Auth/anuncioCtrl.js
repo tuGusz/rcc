@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const listar = (req, res) => {
-
     const token = req.header('authorization');
     if (!token) {
         return res.status(401).json({ error: 'Token não fornecido' });

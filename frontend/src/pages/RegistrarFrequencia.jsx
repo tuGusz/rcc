@@ -49,7 +49,7 @@ const RegistrarFrequencia = () => {
 
             } catch (error) {
                 console.error("Erro detalhado:", error);
-                alert(`Erro ao carregar dados: ${error.message}`);
+                alert(`Erro ao carregar dados | Não tem campanha: ${error.message}`);
             } finally {
                 setLoading(false);
             }
@@ -87,7 +87,7 @@ const RegistrarFrequencia = () => {
     };
 
     if (loading) return <div>Carregando...</div>;
-    if (!campanha) return <div>Campanha não encontrada</div>;
+    if (!campanha) return <div>Não foram encontradas nenhuma campanha!</div>;
 
     return (
         <div style={{ padding: '20px' }}>

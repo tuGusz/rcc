@@ -17,6 +17,7 @@ import ListaDoacoes from './pages/daocao/ListarDoacao';
 import Cadastro from './pages/Cadastro';  
 import Caixas from './pages/Caixas';
 import Recuperar from './pages/RecuperarSenha';
+import Frequencia from './pages/RegistrarFrequencia'
  
 import './App.css';  
 
@@ -43,7 +44,12 @@ function App() {
             <Route 
               path="/cadastro" 
               element={user && user.role === "Administrador" ? <Cadastro /> : <Navigate to="/login" />} 
-            /> {/* Só administradores podem acessar o cadastro */}
+            /> 
+            <Route 
+              path="/registrar-frequencia" 
+              element={user && (user.role === "Administrador" || user.role === "Moderador") ? <Frequencia /> : <Navigate to="/login" />} 
+            />
+
             {/* Adiciona PrivateRoute para proteger as páginas que só podem ser acessadas com login */}
             <Route path="/" element={user ? <CardsAtalho /> : <Navigate to="/login" />} />
             <Route path="/registrar-doacao" element={user ? <RegistroDoacao /> : <Navigate to="/login" />} />

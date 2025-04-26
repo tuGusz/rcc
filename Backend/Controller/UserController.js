@@ -3,16 +3,18 @@ import bcrypt from 'bcryptjs';
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto'; 
+import dotenv from 'dotenv';
+dotenv.config();
 
 const secretKey = process.env.JWT_SECRET;
 
-  //pessoal nao esqueça de configurar aqui 
+//pessoal nao esqueça de configurar aqui 
 const transporter = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io", //estava usando o mailtrap para capturar os  email para gravar o video
     port: 2525,
     auth: {
-        user: "seu user",  
-        pass: "sua senha"
+        user: "",  
+        pass: ""
     }
 });
 
@@ -62,7 +64,7 @@ class UserController {
 
     async verificarCodigo(req, res) {
         const { email, codigo } = req.body;
-
+        
         try {
             const user = await User.getUserByEmail(email);
             if (!user) {

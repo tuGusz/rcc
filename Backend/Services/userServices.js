@@ -1,6 +1,8 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../Model/Entidades/userModel.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Função para obter usuário por email
 const getUserByEmail = async (email) => {
@@ -38,7 +40,7 @@ const login = async (email, password) => {
 
   const token = jwt.sign(
     { id: user.id, email: user.email, nome: user.nome, role: user.role },
-    process.env.JWT_SECRET || "fallbackSecret",
+    process.env.JWT_SECRET,
     { expiresIn: "1h" } // Aumentei o tempo de expiração para 1 hora
   );
 

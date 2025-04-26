@@ -65,6 +65,9 @@ export default function MenuHamburguer() {
                     <Link to="/registrar-doacao" className="link-hamburg">
                         <li>Registrar de Doação</li>
                     </Link>
+                    <Link to="/registrar-frequencia" className="link-hamburg">
+                        <li>Registrar de Frequencia</li>
+                    </Link>
                     
                     <div className='side-cabecalho'>
                     </div>
