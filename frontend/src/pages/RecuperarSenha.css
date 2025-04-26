@@ -1,0 +1,94 @@
+.recuperar-senha-container {
+    background-color: #f0f0f0; /* Cor de fundo da página */
+    min-height: 100vh; /* Garante que o container ocupe a altura total da tela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .recuperar-senha-wrapper {
+    width: 100%;
+    max-width: 500px; /* Largura máxima do cartão */
+  }
+  
+  .recuperar-senha-card {
+    background: #ffffff; /* Cor de fundo do cartão */
+    border-radius: 8px; /* Borda arredondada do cartão */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 30px; /* Espaçamento interno do cartão */
+  }
+  
+  .recuperar-senha-header {
+    text-align: center; /* Alinha o título e a descrição no centro */
+    margin-bottom: 20px; /* Espaçamento abaixo do cabeçalho */
+  }
+  
+  .recuperar-senha-header h1 {
+    font-size: 24px; /* Tamanho do título */
+    font-weight: bold; /* Peso da fonte do título */
+    color: #333; /* Cor do título */
+    margin-bottom: 10px;
+  }
+  
+  .recuperar-senha-header p {
+    font-size: 16px; /* Tamanho da descrição */
+    color: #666; /* Cor da descrição */
+  }
+  
+  .form-group-animate label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .recuperar-senha-button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #ffffff; /* Cor do texto do botão */
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição suave na cor de fundo */
+  }
+  
+  .recuperar-senha-button:hover {
+    background-color: #0056b3; /* Cor de fundo do botão no hover */
+  }
+  
+  .alert {
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .forgot-password-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .forgot-password-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+  
+  /* Estilos para telas menores (mobile) */
+  @media (max-width: 576px) {
+    .recuperar-senha-wrapper {
+      max-width: 100%; /* Ocupa toda a largura em telas pequenas */
+    }
+    .recuperar-senha-card {
+      padding: 20px; /* Espaçamento interno menor em telas pequenas */
+    }
+    .recuperar-senha-header h1 {
+      font-size: 22px; /* Tamanho do título menor em telas pequenas */
+    }
+    .recuperar-senha-header p {
+      font-size: 14px; /* Tamanho da descrição menor em telas pequenas */
+    }
+    .form-group-animate label {
+        font-size: 14px;
+    }
+  }

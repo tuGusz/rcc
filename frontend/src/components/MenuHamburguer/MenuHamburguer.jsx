@@ -1,5 +1,5 @@
 import './style.css';
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import ImgMimosa from '../../assets/imgs/logo_mimosa.jpg';
 import IconNotificacao from '../../assets/imgs/notificacao.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -18,7 +18,6 @@ export default function MenuHamburguer() {
         logout();  
         navigate("/login");
     };
-
    
     if (!user) return null;  
 

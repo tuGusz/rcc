@@ -16,7 +16,8 @@ import RegistroDoacao from './pages/daocao/RegistroDoacao';
 import ListaDoacoes from './pages/daocao/ListarDoacao';
 import Cadastro from './pages/Cadastro';  
 import Caixas from './pages/Caixas';
-
+import Recuperar from './pages/RecuperarSenha';
+ 
 import './App.css';  
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <div className="main-content">
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path='/recuperar-senha' element={<Recuperar />} />
             <Route 
               path="/cadastro" 
               element={user && user.role === "Administrador" ? <Cadastro /> : <Navigate to="/login" />} 

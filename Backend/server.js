@@ -14,6 +14,7 @@ import comissaoRoutes from "./Routes/ComissaoRoutes.js"
 import frequenciaRoutes from './Routes/FrequenciaRoutes.js';
 import associadoRoutes from './Routes/AssociadoRoutes.js'; 
 import DoacaoRoutes from "./Routes/DoacaoRoute.js";
+import recuperar from "./Routes/usuarioRoutes.js"
 
 const app = express();
 const port = 3002;
@@ -33,6 +34,7 @@ app.use(comissaoRoutes);
 app.use(frequenciaRoutes);
 app.use(associadoRoutes);
 app.use(DoacaoRoutes);
+app.use(recuperar)
 
 app.listen(port, () => {
     console.log(`Rodando na porta ${port}`)
