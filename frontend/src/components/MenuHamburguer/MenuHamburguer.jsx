@@ -40,21 +40,21 @@ export default function MenuHamburguer() {
                     </div>
                   
                     <Link to="/campanha" className="link-hamburg">
-                        <li>Cadastrar campanhas</li>
+                        <li>Cadastrar Campanhas</li>
                     </Link>
                     <Link to="/associado" className="link-hamburg">
-                        <li>Cadastrar associados</li>
+                        <li>Cadastrar Associados</li>
                     </Link>
-                    <li>Cadastrar títulos</li>
+                    <li>Cadastrar Títulos</li>
                     <Link to="/netflix-ta-cara-meus-anjos" className="link-hamburg">
                         <li>Cadastrar Despesas</li>
                     </Link>
-                    <li>Cadastrar cargos</li>
+                    <li>Cadastrar Cargos</li>
                     <Link to="/gerenciar-tipos-produtos" className="link-hamburg">
                         <li>Cadastrar Produtos</li>
                     </Link>
                     
-                    {/* Mostrar "Cadastrar Usuário" somente para Administradores */}
+                    
                     {user?.role === "Administrador" && (
                         <Link to="/cadastro" className="link-hamburg">
                             <li>Cadastrar Usuário</li>
@@ -73,9 +73,11 @@ export default function MenuHamburguer() {
                         <li>Campanhas cadastradas</li>
                     </Link>
                     <Link to="/listar-doacao" className="link-hamburg">
-                        <li>lista de Doação</li>
+                        <li>Lista de Doação</li>
                     </Link>
                     
+                    <div className='side-cabecalho'>
+                    </div>
                     <li className="logout" onClick={handleLogout}>Sair</li>
                 </ul>
             </div>

@@ -20,7 +20,7 @@ const FormAssociados = () => {
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <div style={{ padding: "20px", fontFamily: "Arial",  marginLeft: "250px"}}>
       <h2 style={{ fontWeight: "bold", marginBottom: "20px", textAlign: "center" }}>
         Cadastro de Associados
       </h2>
