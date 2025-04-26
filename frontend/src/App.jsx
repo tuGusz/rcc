@@ -10,8 +10,11 @@ import GerenciarProdutos from './pages/GerenciarTiposProdutos';
 import GerenciarMensalidades from './pages/Mensalidades';
 import FormAssociados from './pages/Associados';
 import Comissao from './pages/Comissao';
+import RegistroDoacao from './pages/daocao/RegistroDoacao';
+import ListaDoacoes from './pages/daocao/ListarDoacao';
+
+import PrivateRoute from './components/PrivateRoute';
 import Cadastro from './pages/Cadastro';  // Componente de cadastro
-import Caixas from './pages/Caixas';
 
 import './App.css'; // Certifique-se de ter estilos apropriados
 
@@ -39,13 +42,14 @@ function App() {
             /> {/* Só administradores podem acessar o cadastro */}
             {/* Adiciona PrivateRoute para proteger as páginas que só podem ser acessadas com login */}
             <Route path="/" element={user ? <CardsAtalho /> : <Navigate to="/login" />} />
+            <Route path="/registrar-doacao" element={user ? <RegistroDoacao /> : <Navigate to="/login" />} />
+            <Route path="/listar-doacao" element={user ? <ListaDoacoes /> : <Navigate to="/login" />} />
             <Route path="/campanha" element={user ? <Campanha /> : <Navigate to="/login" />} />
             <Route path="/list-campanhas" element={user ? <ListagemCampanha /> : <Navigate to="/login" />} />
             <Route path="/gerenciar-tipos-produtos" element={user ? <GerenciarProdutos /> : <Navigate to="/login" />} />
             <Route path="/netflix-ta-cara-meus-anjos" element={user ? <GerenciarMensalidades /> : <Navigate to="/login" />} />
             <Route path="/associado" element={user ? <FormAssociados /> : <Navigate to="/login" />} />
             <Route path="/comissao" element={user ? <Comissao /> : <Navigate to="/login" />} />
-            <Route path="/caixas" element={user ? <Caixas /> : <Navigate to="/login" />} />
           </Routes>
         </div>
       </div>

@@ -123,7 +123,7 @@ const Login = () => {
                     onChange={handleChange}
                     onKeyUp={checkCapsLock}
                     ref={passwordRef}
-                    placeholder="••••••••"
+                    placeholder="Digite sua senha"  
                     required
                     className={`form-control-lg ${formErrors.password ? 'is-invalid' : ''}`}
                     isInvalid={!!formErrors.password}

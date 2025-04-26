@@ -46,7 +46,6 @@ export default function MenuHamburguer() {
                         <li>Cadastrar associados</li>
                     </Link>
                     <li>Cadastrar títulos</li>
-                    <li>Cadastrar doações</li>
                     <Link to="/netflix-ta-cara-meus-anjos" className="link-hamburg">
                         <li>Cadastrar Despesas</li>
                     </Link>
@@ -64,9 +63,19 @@ export default function MenuHamburguer() {
                     
                     <div className='side-cabecalho'>
                     </div>
+                    <Link to="/registrar-doacao" className="link-hamburg">
+                        <li>Registrar de Doação</li>
+                    </Link>
+                    
+                    <div className='side-cabecalho'>
+                    </div>
                     <Link to="/list-campanhas" className="link-hamburg">
                         <li>Campanhas cadastradas</li>
                     </Link>
+                    <Link to="/listar-doacao" className="link-hamburg">
+                        <li>lista de Doação</li>
+                    </Link>
+                    
                     <li className="logout" onClick={handleLogout}>Sair</li>
                 </ul>
             </div>
