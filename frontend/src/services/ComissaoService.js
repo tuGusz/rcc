@@ -1,7 +1,7 @@
 const API_BASE_URL = "http://localhost:3002";
 
 class ComissaoService {
-  // Obter todas as comissões
+  
   async obterTodasComissoes() {
     const response = await fetch(`${API_BASE_URL}/comissoes`, {
       headers: {
@@ -16,8 +16,7 @@ class ComissaoService {
     const dados = await response.json();
     return dados;
   }
-
-  // Excluir uma comissão pelo ID
+ 
   async excluirComissao(id) {
     const response = await fetch(`${API_BASE_URL}/comissao/${id}`, {
       method: 'DELETE',
@@ -31,7 +30,7 @@ class ComissaoService {
     return response.json();
   }
 
-  // Adicionar uma nova comissão
+ 
   async adicionarComissao(comissao) {
     const response = await fetch(`${API_BASE_URL}/comissao`, {
       method: 'POST',
@@ -48,7 +47,7 @@ class ComissaoService {
     return response.json();
   }
 
-  // Editar uma comissão existente
+ 
   async editarComissao(id, comissao) {
     const response = await fetch(`${API_BASE_URL}/comissao/${id}`, {
       method: 'PUT',

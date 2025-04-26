@@ -78,8 +78,7 @@ class ProdutoService {
     if (!response.ok) {
       throw new Error('Erro ao excluir produto');
     }
-    
-    //window.location.reload();
+ 
     return await response.json();
   }
 }

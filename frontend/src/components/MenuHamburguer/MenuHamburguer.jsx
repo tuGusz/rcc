@@ -4,23 +4,23 @@ import ImgMimosa from '../../assets/imgs/logo_mimosa.jpg';
 import IconNotificacao from '../../assets/imgs/notificacao.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { MenuContext } from "../../context/MenuContext";
 
 export default function MenuHamburguer() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user, logout } = useContext(AuthContext); // Use o logout diretamente do AuthContext
+    const { isMenuOpen, toggleMenu } = useContext(MenuContext);
+
+
+    const { user, logout } = useContext(AuthContext); 
     const navigate = useNavigate();
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
+  
     const handleLogout = () => {
-        logout(); // Usando a função de logout do AuthContext
+        logout();  
         navigate("/login");
     };
 
-    // Se o usuário não estiver logado, não renderiza o menu
-    if (!user) return null; // Evita renderizar o MenuHamburguer caso não tenha um usuário
+   
+    if (!user) return null;  
 
     return (
         <nav className="navbar">

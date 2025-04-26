@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // 👈 IMPORTANTE
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       console.error('Erro ao buscar usuário:', error);
       logout();
     } finally {
-      setLoading(false); // 👈 FINALIZA o carregamento
+      setLoading(false);  
     }
   };
 
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
       if (response.data.success) {
         localStorage.setItem('token', response.data.token);
         api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
-        await fetchUser(); // 👈 pega o user após login
+        await fetchUser();  
         return true;
       }
       return false;

@@ -1,6 +1,8 @@
 import { useContext, useEffect } from 'react';
 import { AuthContext } from './context/AuthContext';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { MenuProvider } from './context/MenuContext';
+
 import MenuHamburguer from './components/MenuHamburguer/MenuHamburguer';
 import Login from './pages/Login/Login';
 import CardsAtalho from './components/CardsAtalho/CardsAtalho';
@@ -12,11 +14,10 @@ import FormAssociados from './pages/Associados';
 import Comissao from './pages/Comissao';
 import RegistroDoacao from './pages/daocao/RegistroDoacao';
 import ListaDoacoes from './pages/daocao/ListarDoacao';
-import Cadastro from './pages/Cadastro';  // Componente de cadastro
+import Cadastro from './pages/Cadastro';  
 import Caixas from './pages/Caixas';
- 
 
-import './App.css'; // Certifique-se de ter estilos apropriados
+import './App.css';  
 
 function App() {
   const { user, loading } = useContext(AuthContext);
@@ -28,6 +29,7 @@ function App() {
   if (loading) return <div>Carregando...</div>;
 
   return (
+    <MenuProvider>
     <Router>
       <div className={`app-container ${user ? 'logged-in' : ''}`}>
         {/* Renderiza o MenuHamburguer apenas se o usuário estiver logado */}
@@ -55,6 +57,7 @@ function App() {
         </div>
       </div>
     </Router>
+    </MenuProvider>
   );
 }
 

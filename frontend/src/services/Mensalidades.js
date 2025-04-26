@@ -1,7 +1,6 @@
 const API_BASE_URL = "http://localhost:3002";
 
 class MensalidadeService {
-  // Obter todas as mensalidades
   async getAllMensalidades() {
     const response = await fetch(`${API_BASE_URL}/mensalidades`, {
       headers: {
@@ -15,8 +14,7 @@ class MensalidadeService {
 
     return await response.json();
   }
-
-  // Adicionar uma nova mensalidade
+ 
   async adicionarMensalidade(mensalidade) {
     try {
       console.log('Mensalidade enviada:', mensalidade);
@@ -43,8 +41,7 @@ class MensalidadeService {
       throw error;
     }
   }
-
-  // Atualizar uma mensalidade
+ 
   async atualizarMensalidade(id, mensalidade) {
     if (!id) {
       throw new Error("Mensalidade deve ter um ID para ser atualizada.");
@@ -67,7 +64,7 @@ class MensalidadeService {
     return await response.json();
   }
 
-  // Excluir uma mensalidade
+ 
   async excluirMensalidade(id) {
     const response = await fetch(`${API_BASE_URL}/mensalidades/${id}`, {
       method: 'DELETE',

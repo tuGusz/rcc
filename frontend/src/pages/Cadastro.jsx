@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useContext  } from "react";
 import { useNavigate } from "react-router-dom";
+import { MenuContext } from "../context/MenuContext";
+
+
 import api from '../services/api';
+
 import './Login/Login.css';
 
 export default function Cadastro() {
+    const { isMenuOpen } = useContext(MenuContext);
+
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -35,6 +41,11 @@ export default function Cadastro() {
     };
 
     return (
+        <div style={{ 
+            padding: "20px",
+            marginLeft: isMenuOpen ? "250px" : "0px",
+            transition: "margin-left 0.3s ease"
+          }}>
         <div className="login-container loaded">
             <div className="container d-flex justify-content-center align-items-center min-vh-100">
                 <div className="col-md-6 col-lg-5 login-card">
@@ -105,6 +116,7 @@ export default function Cadastro() {
                     </form>
                 </div>
             </div>
+        </div>
         </div>
     );
 }
