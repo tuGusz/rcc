@@ -10,11 +10,11 @@ const secretKey = process.env.JWT_SECRET;
 
 //pessoal nao esqueça de configurar aqui 
 const transporter = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io", //estava usando o mailtrap para capturar os  email para gravar o video
-    port: 2525,
+    host: process.env.MAILTRAP_HOST, //estava usando o mailtrap para capturar os  email para gravar o video
+    port: process.env.MAILTRAP_PORT,
     auth: {
-        user: "",  
-        pass: ""
+        user: process.env.MAILTRAP_EMAIL,  
+        pass: process.env.MAILTRAP_PASS,  
     }
 });
 

@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 import authServices from "../../Services/userServices.js";
 import { User } from "../../Model/Entidades/userModel.js";
- import dotenv from 'dotenv';
- dotenv.config();
+import dotenv from 'dotenv';
+dotenv.config();
  
- 
+
 export const getCurrentUser = async (req, res) => {
   try {
     const { id } = req.usuario; // extraído do middleware `autenticarToken`
