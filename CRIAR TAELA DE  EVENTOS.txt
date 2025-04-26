@@ -1,0 +1,15 @@
+CREATE TABLE eventos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT NOT NULL,
+    local VARCHAR(255) NOT NULL,
+    data_inicio DATETIME NOT NULL,
+    data_fim DATETIME,
+    obrigatorio BOOLEAN NOT NULL,
+    criado_por INT,  
+    data_criacao datetime DEFAULT current_timestamp,
+    atualizado_por INT, 
+    data_atualizacao datetime ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (criado_por) REFERENCES user(id),
+    FOREIGN KEY (atualizado_por) REFERENCES user(id)
+);
