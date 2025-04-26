@@ -3,6 +3,8 @@ import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './RecuperarSenha.css';
 import api from '../services/api';
+import { Eye, EyeOff } from 'lucide-react'; // Importe os ícones
+
 
 const RecuperarSenha = () => {
   const [email, setEmail] = useState('');
@@ -15,6 +17,8 @@ const RecuperarSenha = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [token, setToken] = useState('');
   const navigate = useNavigate();
+  const [showNovaSenha, setShowNovaSenha] = useState(false);  
+  const [showConfirmarNovaSenha, setShowConfirmarNovaSenha] = useState(false);  
 
   const validarEmail = (email) => {
     return /\S+@\S+\.\S+/.test(email);
@@ -48,11 +52,11 @@ const RecuperarSenha = () => {
 
     try {
       const response = await api.post('/recuperar-senha', { email });
-      console.log('handleRecuperarSenha - Resposta da API:', response);  
+      console.log('handleRecuperarSenha - Resposta da API:', response);
       setMensagem(response.data.message);
       setEtapa(2);
     } catch (error) {
-      console.error('handleRecuperarSenha - Erro:', error);  
+      console.error('handleRecuperarSenha - Erro:', error);
       setErro(error.response?.data?.message || 'Ocorreu um erro ao enviar o código. Por favor, tente novamente.');
     } finally {
       setIsSubmitting(false);
@@ -65,7 +69,7 @@ const RecuperarSenha = () => {
     setErro('');
     setMensagem('');
 
-    console.log('handleVerificarCodigo - Email:', email, 'Código:', codigo); 
+    console.log('handleVerificarCodigo - Email:', email, 'Código:', codigo);
 
     if (!codigo) {
       setErro('Por favor, insira o código de recuperação.');
@@ -75,12 +79,12 @@ const RecuperarSenha = () => {
 
     try {
       const response = await api.post('/verificar-codigo', { email, codigo });
-      console.log('handleVerificarCodigo - Resposta da API:', response); 
+      console.log('handleVerificarCodigo - Resposta da API:', response);
       setMensagem(response.data.message);
       setToken(response.data.token);
       setEtapa(3);
     } catch (error) {
-      console.error('handleVerificarCodigo - Erro:', error); 
+      console.error('handleVerificarCodigo - Erro:', error);
       setErro(error.response?.data?.message || 'Código inválido ou expirado. Por favor, tente novamente.');
     } finally {
       setIsSubmitting(false);
@@ -92,33 +96,33 @@ const RecuperarSenha = () => {
     setIsSubmitting(true);
     setErro('');
     setMensagem('');
-  
+
     console.log('handleNovaSenhaSubmit - Token:', token, 'Nova Senha:', novaSenha);
-    console.log('Senha a ser validada:', novaSenha); 
-  
+    console.log('Senha a ser validada:', novaSenha);
+    
     if (!novaSenha) {
       setErro('Por favor, insira a nova senha.');
       setIsSubmitting(false);
       return;
     }
-  
+    
     if (!validarSenha(novaSenha)) {
       setErro('A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, uma letra minúscula e um número.');
       setIsSubmitting(false);
       return;
     }
-  
+    
     if (novaSenha !== confirmarNovaSenha) {
       setErro('As senhas não coincidem. Por favor, verifique.');
       setIsSubmitting(false);
       return;
     }
-  
+    
     try {
       const response = await api.post('/redefinir-senha', { token, novaSenha });
       console.log('handleNovaSenhaSubmit - Resposta da API:', response);
       setMensagem(response.data.message);
-  
+    
       setTimeout(() => {
         navigate('/login');
       }, 3000);
@@ -195,27 +199,59 @@ const RecuperarSenha = () => {
                   <>
                     <Form.Group className="mb-4 form-group-animate">
                       <Form.Label>Nova Senha</Form.Label>
-                      <Form.Control
-                        type="password"
-                        name="novaSenha"
-                        value={novaSenha}
-                        onChange={(e) => setNovaSenha(e.target.value)}
-                        placeholder="Digite a nova senha"
-                        required
-                        className="form-control-lg"
-                      />
+                      <div className="input-group">
+                        <Form.Control
+                          type={showNovaSenha ? 'text' : 'password'}
+                          name="novaSenha"
+                          value={novaSenha}
+                          onChange={(e) => setNovaSenha(e.target.value)}
+                          placeholder="Digite a nova senha"
+                          required
+                          className="form-control-lg"
+                        />
+                        <div className="input-group-append">
+                          <span
+                            className="input-group-text"
+                            onClick={() => setShowNovaSenha(!showNovaSenha)}
+                            style={{ cursor: 'pointer' }}
+                            title={showNovaSenha ? 'Ocultar senha' : 'Exibir senha'}
+                          >
+                            {showNovaSenha ? (
+                              <EyeOff className="h-5 w-5 text-gray-400" />
+                            ) : (
+                              <Eye className="h-5 w-5 text-gray-400" />
+                            )}
+                          </span>
+                        </div>
+                      </div>
                     </Form.Group>
                     <Form.Group className="mb-4 form-group-animate">
                       <Form.Label>Confirmar Nova Senha</Form.Label>
-                      <Form.Control
-                        type="password"
-                        name="confirmarNovaSenha"
-                        value={confirmarNovaSenha}
-                        onChange={(e) => setConfirmarNovaSenha(e.target.value)}
-                        placeholder="Confirme a nova senha"
-                        required
-                        className="form-control-lg"
-                      />
+                      <div className="input-group">
+                        <Form.Control
+                          type={showConfirmarNovaSenha ? 'text' : 'password'}
+                          name="confirmarNovaSenha"
+                          value={confirmarNovaSenha}
+                          onChange={(e) => setConfirmarNovaSenha(e.target.value)}
+                          placeholder="Confirme a nova senha"
+                          required
+                          className="form-control-lg"
+                        />
+                        <div className="input-group-append">
+                          <span
+                            className="input-group-text"
+                            onClick={() => setShowConfirmarNovaSenha(!showConfirmarNovaSenha)}
+                            style={{ cursor: 'pointer' }}
+                            title={showConfirmarNovaSenha ? 'Ocultar senha' : 'Exibir senha'}
+                          >
+                            {showConfirmarNovaSenha ? (
+                              <EyeOff className="h-5 w-5 text-gray-400" />
+                            ) : (
+                              <Eye className="h-5 w-5 text-gray-400" />
+                            )}
+                          </span>
+                        </div>
+                      </div>
                     </Form.Group>
                   </>
                 )}
@@ -254,3 +290,4 @@ const RecuperarSenha = () => {
 };
 
 export default RecuperarSenha;
+

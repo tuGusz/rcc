@@ -1,5 +1,4 @@
 import { useState } from "react";
-import api from "../../services/api"; 
 import '../Login/Login.css';
 
 export default function RegistroDoacao() {
@@ -23,8 +22,6 @@ export default function RegistroDoacao() {
         e.preventDefault();
 
         try {
-            const resposta = await api.post("/doacoes", formData);
-
             setMensagem("Doação registrada com sucesso!");
             
             setFormData({

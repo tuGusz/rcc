@@ -11,7 +11,7 @@ const Comissao = () => {
   const [status, setStatus] = useState('pix');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState('');
-  const [associados, setAssociados] = useState([
+  const [associados] = useState([
     { id: 1, nome: "Associado 1" },
     { id: 2, nome: "Associado 2" },
     { id: 3, nome: "Associado 3" },
