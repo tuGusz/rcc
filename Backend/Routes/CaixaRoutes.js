@@ -1,6 +1,6 @@
 import express from 'express';
 import CaixaController from "../Controller/CaixaController.js";
-import { autenticarToken } from '../Controller/Auth/AuthCtrl.js';
+import { autenticarToken } from '../Controller/Auth/authCtrl.js';
 
 const caixaController = new CaixaController();
 const router = express.Router();

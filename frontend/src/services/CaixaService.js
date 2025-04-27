@@ -37,9 +37,9 @@ class CaixaService {
         'Authorization': `Bearer ${this.getToken()}`,
       },
       body: JSON.stringify({
-        dataAbertura: dadosCaixa.dataAbertura, // data de abertura
-        valorInicial: dadosCaixa.valorInicial, // valor inicial
-        idGestao: dadosCaixa.idGestao, // id da gestão
+        dataAbertura: dadosCaixa.dataAbertura,  
+        valorInicial: dadosCaixa.valorInicial, 
+        idGestao: dadosCaixa.idGestao,  
       }),
     });
 

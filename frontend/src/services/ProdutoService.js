@@ -1,85 +1,56 @@
-const API_BASE_URL = "http://localhost:3002";
+import api from './api'; 
 
 class ProdutoService {
   async getAllProdutos() {
-    const response = await fetch(`${API_BASE_URL}/gerenciar-tipos-produtos`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
+    try {
+      const response = await api.get('/gerenciar-tipos-produtos');   
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao obter os produtos:', error);
       throw new Error('Erro ao obter os produtos');
     }
-
-    return await response.json();
   }
-  
+
+  // Função para adicionar um novo produto
   async adicionarProduto(produto) {
     try {
       console.log('Produto enviado:', produto);
-  
-      const response = await fetch(`${API_BASE_URL}/gerenciar-tipos-produtos`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(produto[0]),  
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.text();
-        console.error('Erro ao adicionar produto:', errorData);
-        throw new Error('Erro ao adicionar produto');
-      }
-  
-      const produtoCadastrado = await response.json(); 
-      console.log('Produto com ID retornado:', produtoCadastrado.id);
+
+      const response = await api.post('/gerenciar-tipos-produtos', produto[0]);   
+
+      console.log('Produto com ID retornado:', response.data.id);
       window.location.reload();
-      return produtoCadastrado;
+      return response.data;
     } catch (error) {
-      console.error('Erro:', error);
-      throw error;
+      console.error('Erro ao adicionar produto:', error);
+      throw new Error('Erro ao adicionar produto');
     }
   }
-  
-  
+
+  // Função para atualizar um produto
   async atualizarProduto(id, produto) {
     if (!id) {
-      throw new Error("Produto deve ter um ID para ser atualizado.");
+      throw new Error('Produto deve ter um ID para ser atualizado.');
     }
 
-    const response = await fetch(`${API_BASE_URL}/gerenciar-tipos-produtos/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(produto),
-    });
-
-    if (!response.ok) {
-      const errorDetails = await response.json().catch(() => null);  
-      console.error("Erro ao atualizar produto:", response.status, errorDetails || "Nenhum detalhe disponível");
-      throw new Error(`Erro | response | ${response.status}`);
+    try {
+      const response = await api.put(`/gerenciar-tipos-produtos/${id}`, produto);  
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao atualizar produto:', error);
+      throw new Error('Erro ao atualizar produto');
     }
-    
-
-    return await response.json();
   }
 
+  // Função para excluir um produto
   async excluirProduto(id) {
-    const response = await fetch(`${API_BASE_URL}/gerenciar-tipos-produtos/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
+    try {
+      const response = await api.delete(`/gerenciar-tipos-produtos/${id}`);  
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao excluir produto:', error);
       throw new Error('Erro ao excluir produto');
     }
- 
-    return await response.json();
   }
 }
 

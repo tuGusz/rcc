@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './ListagemCampanha.css';
+import { MenuContext } from "../context/MenuContext";
 import CampanhaService from '../services/CampanhaService.js';
 
 const campanhaService = new CampanhaService();
 
 const formatarData = (dataISO) => {
+     
   if (!dataISO) {   
     return 'Não há data para término para esta campanha';  
   }
@@ -25,6 +27,7 @@ const formatarDataParaInput = (dataISO) => {
 };
 
 export default function ListagemCampanha() {
+  const { isMenuOpen } = useContext(MenuContext);
   const [campanhas, setCampanhas] = useState([]);
   const [erro, setErro] = useState(null);
   const [campanhaEditando, setCampanhaEditando] = useState(null);
@@ -132,6 +135,11 @@ export default function ListagemCampanha() {
   };
 
   return (
+    <div style={{ 
+      padding: "20px",
+      marginLeft: isMenuOpen ? "250px" : "0px",
+      transition: "margin-left 0.3s ease"
+    }}> 
     <div className="listagem-campanha-container">
       <h1>Lista de Campanhas</h1>
       {erro && <div className="erro-global">{erro}</div>}
@@ -231,5 +239,6 @@ export default function ListagemCampanha() {
         </div>
       )}
     </div>
+        </div>
   );
 }

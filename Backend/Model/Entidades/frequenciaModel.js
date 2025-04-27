@@ -1,4 +1,4 @@
-import db from '../Database.js'; // Supondo que você tenha o arquivo de banco de dados configurado como 'db'
+import db from '../database.js'; // Supondo que você tenha o arquivo de banco de dados configurado como 'db'
 
 const database = new db();
 
@@ -15,7 +15,7 @@ class Frequencia {
 
             // Verifica se a campanha existe
             const [campanha] = await database.ExecutaComando(
-                'SELECT * FROM campanha WHERE C_id = ?',
+                'SELECT * FROM campanha WHERE c_id = ?',
                 [campanhaId]
             );
             if (!campanha.length) throw new Error('Campanha não encontrada');
@@ -37,6 +37,7 @@ class Frequencia {
         }
     }
 
+ 
     static async listarPorCampanha(campanhaId) {
         try {
             // Lista as frequências de acordo com a campanha

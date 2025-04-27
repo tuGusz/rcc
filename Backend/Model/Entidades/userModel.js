@@ -52,23 +52,21 @@ export class User {
    * @returns {Promise<Array<User>>}
    */
   static async obterTodos() {
+    const query = "SELECT * FROM user";
     try {
-      const [rows] = await database.ExecutaComando("SELECT * FROM user");
-      return rows.map((row) => new User({
-        id: row.id,
-        nome: row.nome,
-        email: row.email,
-        password_hash: row.password_hash,
-        role: row.role,
-        reset_password_token: row.reset_password_token, // Inclui token na consulta
-        reset_password_expires: row.reset_password_expires, // Inclui expiração na consulta
-      }));
-    } catch (err) {
-      throw new Error('Erro ao obter usuários: ' + err.message);
+      const result = await database.ExecutaComando(query);
+      // console.log("Resultado de obterTodos:", result);
+      if (result && Array.isArray(result.rows)) {
+        return result.rows;
+      } else {
+         console.error("Erro: obterTodos não retornou um array válido. Retorno:", result);
+        return [];
+      }
+    } catch (error) {
+      console.error("Erro ao obter todos os usuários:", error);
+      throw error;
     }
   }
-
-
   /**
    * Retorna um User que tem o email igual ao especificado, ou null
    * se não houver nenhum.
@@ -99,6 +97,30 @@ export class User {
     }
   }
 
+
+  static async obterPorId(id) {
+    try {
+        const result = await database.ExecutaComando("SELECT * FROM user WHERE id = ?", [id]);
+
+        if (!result.rows || result.rows.length === 0) return null;
+
+        const row = result.rows[0];
+
+        // Retorna um novo usuário com os dados encontrados
+        return new User({
+            id: row.id || 0,
+            nome: row.nome || "",
+            email: row.email || "",
+            password_hash: row.password_hash || "",
+            role: row.role || "Membro",
+            reset_password_token: row.reset_password_token, // Inclui token
+            reset_password_expires: row.reset_password_expires, // Inclui expiração
+        });
+    } catch (err) {
+        console.error("Erro ao buscar usuário:", err);
+        throw new Error('Erro ao obter usuário pelo id');
+    }
+  }
 
   /**
    * Cria um novo Usuario no banco de dados ou atualiza um existente.

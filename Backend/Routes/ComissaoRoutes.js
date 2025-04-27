@@ -1,6 +1,6 @@
 import express from 'express';
 import ComissaoController from "../Controller/ComissaoController.js";
-import { autenticarToken } from '../Controller/Auth/AuthCtrl.js';
+import { autenticarToken } from '../Controller/Auth/authCtrl.js';
 
 const comissaoController = new ComissaoController();
 const router = express.Router();

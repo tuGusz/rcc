@@ -9,7 +9,7 @@ const associadoController = new AssociadoController();
 router.get('/associados', autenticarToken, (req, res) => associadoController.obterTodos(req, res));
 router.get('/associados/:cpf', autenticarToken, (req, res) => associadoController.buscarPorId(req, res));
 
-router.post('/associados', autenticarToken, (req, res) => associadoController.adicionar(req, res));
+router.post('/associados', autenticarToken, (req, res) => associadoController.criar(req, res));
 router.put('/associados/:cpf', autenticarToken, (req, res) => associadoController.editar(req, res));
 router.delete('/associados/:cpf', autenticarToken, (req, res) => associadoController.excluir(req, res));
 

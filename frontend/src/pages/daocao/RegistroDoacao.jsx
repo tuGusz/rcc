@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { MenuContext } from "../../context/MenuContext";
 import '../Login/Login.css';
 
 export default function RegistroDoacao() {
+    const { isMenuOpen } = useContext(MenuContext);
+
     const [formData, setFormData] = useState({
         nome_doador: "",
         email: "",
@@ -45,6 +48,11 @@ export default function RegistroDoacao() {
     };
 
     return (
+        <div style={{ 
+            padding: "20px",
+            marginLeft: isMenuOpen ? "250px" : "0px",
+            transition: "margin-left 0.3s ease"
+          }}>
         <div className="d-flex justify-content-center align-items-center min-vh-100">
             <div className="campanha-container">
                 <h1>Registro de Doação</h1>
@@ -141,6 +149,7 @@ export default function RegistroDoacao() {
                     <button type="submit" className="btn-cadastrar">Registrar Doação</button>
                 </form>
             </div>
+        </div>
         </div>
     );
 }

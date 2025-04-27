@@ -18,7 +18,8 @@ import Cadastro from './pages/Cadastro';
 import Caixas from './pages/Caixas';
 import Recuperar from './pages/RecuperarSenha';
 import Frequencia from './pages/RegistrarFrequencia'
- 
+import Reunioes from './pages/Eventos'
+
 import './App.css';  
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
             /> 
             <Route 
               path="/registrar-frequencia" 
-              element={user && (user.role === "Administrador" || user.role === "Moderador") ? <Frequencia /> : <Navigate to="/login" />} 
+              element={user ? <Frequencia /> : <Navigate to="/login" />} 
             />
 
             {/* Adiciona PrivateRoute para proteger as páginas que só podem ser acessadas com login */}
@@ -61,6 +62,7 @@ function App() {
             <Route path="/associado" element={user ? <FormAssociados /> : <Navigate to="/login" />} />
             <Route path="/comissao" element={user ? <Comissao /> : <Navigate to="/login" />} />
             <Route path="/caixas" element={user ? <Caixas /> : <Navigate to="/login" />} />
+            <Route path="/eventos" element={user ? <Reunioes /> : <Navigate to="/login" />} />
           </Routes>
         </div>
       </div>

@@ -1,83 +1,52 @@
-const API_BASE_URL = "http://localhost:3002";
+import api from './api'; 
 
 class MensalidadeService {
   async getAllMensalidades() {
-    const response = await fetch(`${API_BASE_URL}/mensalidades`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
+    try {
+      const response = await api.get('/mensalidades');  
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao obter mensalidades:', error);
       throw new Error('Erro ao obter mensalidades');
     }
-
-    return await response.json();
   }
- 
+
   async adicionarMensalidade(mensalidade) {
     try {
       console.log('Mensalidade enviada:', mensalidade);
 
-      const response = await fetch(`${API_BASE_URL}/mensalidades`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(mensalidade),
-      });
+      const response = await api.post('/mensalidades', mensalidade); 
 
-      if (!response.ok) {
-        const errorData = await response.text();
-        console.error('Erro ao adicionar mensalidade:', errorData);
-        throw new Error('Erro ao adicionar mensalidade');
-      }
-
-      const mensalidadeCadastrada = await response.json();
-      console.log('Mensalidade cadastrada:', mensalidadeCadastrada);
-      return mensalidadeCadastrada;
+      console.log('Mensalidade cadastrada:', response.data);
+      return response.data;
     } catch (error) {
-      console.error('Erro:', error);
-      throw error;
+      console.error('Erro ao adicionar mensalidade:', error);
+      throw new Error('Erro ao adicionar mensalidade');
     }
   }
- 
+
   async atualizarMensalidade(id, mensalidade) {
     if (!id) {
-      throw new Error("Mensalidade deve ter um ID para ser atualizada.");
+      throw new Error('Mensalidade deve ter um ID para ser atualizada.');
     }
 
-    const response = await fetch(`${API_BASE_URL}/mensalidades/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(mensalidade),
-    });
-
-    if (!response.ok) {
-      const errorDetails = await response.json().catch(() => null);
-      console.error("Erro ao atualizar mensalidade:", response.status, errorDetails || "Nenhum detalhe disponível");
-      throw new Error(`Erro ao atualizar mensalidade: ${response.status}`);
+    try {
+      const response = await api.put(`/mensalidades/${id}`, mensalidade);  
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao atualizar mensalidade:', error);
+      throw new Error('Erro ao atualizar mensalidade');
     }
-
-    return await response.json();
   }
 
- 
   async excluirMensalidade(id) {
-    const response = await fetch(`${API_BASE_URL}/mensalidades/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
+    try {
+      const response = await api.delete(`/mensalidades/${id}`);  
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao excluir mensalidade:', error);
       throw new Error('Erro ao excluir mensalidade');
     }
-
-    return await response.json();
   }
 }
 

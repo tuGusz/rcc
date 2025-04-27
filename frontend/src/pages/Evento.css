@@ -1,0 +1,134 @@
+.eventos-container {
+    padding: 20px;
+  }
+  
+  .eventos-titulo {
+    color: #007bff;
+    text-align: center;
+  }
+  
+  .eventos-subtitulo {
+    color: #343a40;
+    margin-bottom: 20px;
+  }
+  
+  .eventos-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .eventos-checkbox {
+    margin-top: 10px;
+  }
+  
+  .eventos-botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .eventos-salvar-button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .eventos-salvar-button:hover {
+    background-color: #218838;
+  }
+  
+  .eventos-cancelar-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .eventos-cancelar-button:hover {
+    background-color: #c82333;
+  }
+  
+  .eventos-listar-button {
+      background-color: #17a2b8;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      margin-left: auto;
+  }
+  
+  .eventos-listar-button:hover {
+      background-color: #138496;
+  }
+  
+  
+  .eventos-table {
+    margin-top: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .eventos-table thead th {
+    background-color: #f8f9fa;
+    color: #343a40;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .eventos-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  
+  .eventos-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .eventos-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .eventos-table tbody tr:hover {
+    background-color: #e0f7fa;
+    transition: background-color 0.3s ease;
+  }
+  
+  .eventos-acoes {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .eventos-editar-button {
+    background-color: #17a2b8;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .eventos-editar-button:hover {
+    background-color: #138496;
+  }
+  
+  .eventos-excluir-button {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .eventos-excluir-button:hover {
+    background-color: #c82333;
+  }

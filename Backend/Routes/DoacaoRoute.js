@@ -1,7 +1,6 @@
 import express from 'express';
 import doacaoController from '../Controller/doacaoController.js';
-import { autenticarToken } from '../Controller/Auth/AuthCtrl.js';
-
+import { autenticarToken } from '../Controller/Auth/authCtrl.js';
 
 const router = express.Router();
 

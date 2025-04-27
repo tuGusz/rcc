@@ -1,10 +1,7 @@
 import { useState, useContext  } from "react";
 import { useNavigate } from "react-router-dom";
 import { MenuContext } from "../context/MenuContext";
-
-
 import api from '../services/api';
-
 import './Login/Login.css';
 
 export default function Cadastro() {

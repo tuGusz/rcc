@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import FrequenciaController from '../Controller/FrequenciaCtrl.js';
+import { autenticarToken } from '../Controller/Auth/authCtrl.js';
 
 const router = Router();
 const freque = new FrequenciaController();
 
-router.post("/frequencia", freque.registrarFrequencia);
-router.get("/frequencia/:eventoId", freque.listarFrequencias);
+router.post("/frequencia", autenticarToken, freque.registrarFrequencia);
+router.get("/frequencia/:eventoId", autenticarToken, freque.listarFrequencias);
+router.get("/usuarios", autenticarToken, freque.getAllUsersMeusAmores);
 
-export default router; // exporta o router como default
+export default router;  

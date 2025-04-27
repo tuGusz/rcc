@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { MenuContext } from "../context/MenuContext";
 import './Campanha.css';
-import CampanhaService from '../services/CampanhaService'; 
-
-const campanhaService = new CampanhaService();
+import CampanhaService from '../services/CampanhaService';
+// Remova o 'new' aqui
+const campanhaService = new CampanhaService(); // Importe diretamente a instância exportada
 
 export default function Campanha() {
+  const { isMenuOpen } = useContext(MenuContext);
   const [formData, setFormData] = useState({
     nome: '',
     descricao: '',
@@ -72,10 +74,11 @@ export default function Campanha() {
         local: formData.local,
         descricao: formData.descricao,
         dataInicio: formData.dataInicio,
-        dataFim: formData.dataFim || null, 
+        dataFim: formData.dataFim || null,
       };
 
       try {
+        // Use campanhaService diretamente
         const response = await campanhaService.adicionarCampanha(campanha);
 
         if (response) {
@@ -99,6 +102,11 @@ export default function Campanha() {
   };
 
   return (
+    <div style={{ 
+      padding: "20px",
+      marginLeft: isMenuOpen ? "250px" : "0px",
+      transition: "margin-left 0.3s ease"
+    }}>
     <div className="campanha-container">
       <h1>Cadastro de Campanha</h1>
       <form onSubmit={handleSubmit} className="form-campanha">
@@ -166,6 +174,7 @@ export default function Campanha() {
         </button>
       </form>
       {message && <p className="message">{message}</p>}
+    </div>
     </div>
   );
 }
