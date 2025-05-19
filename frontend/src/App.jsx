@@ -17,10 +17,11 @@ import ListaDoacoes from './pages/daocao/ListarDoacao';
 import Cadastro from './pages/Cadastro';  
 import Caixas from './pages/Caixas';
 import Recuperar from './pages/RecuperarSenha';
-import Frequencia from './pages/RegistrarFrequencia'
-import Reunioes from './pages/Eventos'
+import Frequencia from './pages/RegistrarFrequencia';
+import Reunioes from './pages/Eventos';
+import Estoque from './pages/Estoque'; // ✅ Novo import do Estoque
 
-import './App.css';  
+import './App.css';
 
 function App() {
   const { user, loading } = useContext(AuthContext);
@@ -33,40 +34,32 @@ function App() {
 
   return (
     <MenuProvider>
-    <Router>
-      <div className={`app-container ${user ? 'logged-in' : ''}`}>
-        {/* Renderiza o MenuHamburguer apenas se o usuário estiver logado */}
-        {user && <MenuHamburguer />}
+      <Router>
+        <div className={`app-container ${user ? 'logged-in' : ''}`}>
+          {user && <MenuHamburguer />}
 
-        <div className="main-content">
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path='/recuperar-senha' element={<Recuperar />} />
-            <Route 
-              path="/cadastro" 
-              element={user && user.role === "Administrador" ? <Cadastro /> : <Navigate to="/login" />} 
-            /> 
-            <Route 
-              path="/registrar-frequencia" 
-              element={user ? <Frequencia /> : <Navigate to="/login" />} 
-            />
-
-            {/* Adiciona PrivateRoute para proteger as páginas que só podem ser acessadas com login */}
-            <Route path="/" element={user ? <CardsAtalho /> : <Navigate to="/login" />} />
-            <Route path="/registrar-doacao" element={user ? <RegistroDoacao /> : <Navigate to="/login" />} />
-            <Route path="/listar-doacao" element={user ? <ListaDoacoes /> : <Navigate to="/login" />} />
-            <Route path="/campanha" element={user ? <Campanha /> : <Navigate to="/login" />} />
-            <Route path="/list-campanhas" element={user ? <ListagemCampanha /> : <Navigate to="/login" />} />
-            <Route path="/gerenciar-tipos-produtos" element={user ? <GerenciarProdutos /> : <Navigate to="/login" />} />
-            <Route path="/netflix-ta-cara-meus-anjos" element={user ? <GerenciarMensalidades /> : <Navigate to="/login" />} />
-            <Route path="/associado" element={user ? <FormAssociados /> : <Navigate to="/login" />} />
-            <Route path="/comissao" element={user ? <Comissao /> : <Navigate to="/login" />} />
-            <Route path="/caixas" element={user ? <Caixas /> : <Navigate to="/login" />} />
-            <Route path="/eventos" element={user ? <Reunioes /> : <Navigate to="/login" />} />
-          </Routes>
+          <div className="main-content">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/recuperar-senha" element={<Recuperar />} />
+              <Route path="/cadastro" element={user && user.role === "Administrador" ? <Cadastro /> : <Navigate to="/login" />} />
+              <Route path="/registrar-frequencia" element={user ? <Frequencia /> : <Navigate to="/login" />} />
+              <Route path="/" element={user ? <CardsAtalho /> : <Navigate to="/login" />} />
+              <Route path="/registrar-doacao" element={user ? <RegistroDoacao /> : <Navigate to="/login" />} />
+              <Route path="/listar-doacao" element={user ? <ListaDoacoes /> : <Navigate to="/login" />} />
+              <Route path="/campanha" element={user ? <Campanha /> : <Navigate to="/login" />} />
+              <Route path="/list-campanhas" element={user ? <ListagemCampanha /> : <Navigate to="/login" />} />
+              <Route path="/gerenciar-tipos-produtos" element={user ? <GerenciarProdutos /> : <Navigate to="/login" />} />
+              <Route path="/netflix-ta-cara-meus-anjos" element={user ? <GerenciarMensalidades /> : <Navigate to="/login" />} />
+              <Route path="/associado" element={user ? <FormAssociados /> : <Navigate to="/login" />} />
+              <Route path="/comissao" element={user ? <Comissao /> : <Navigate to="/login" />} />
+              <Route path="/caixas" element={user ? <Caixas /> : <Navigate to="/login" />} />
+              <Route path="/eventos" element={user ? <Reunioes /> : <Navigate to="/login" />} />
+              <Route path="/estoque" element={user ? <Estoque /> : <Navigate to="/login" />} /> {/* ✅ Nova rota protegida */}
+            </Routes>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
     </MenuProvider>
   );
 }

@@ -16,6 +16,7 @@ import associadoRoutes from './Routes/AssociadoRoutes.js';
 import DoacaoRoutes from "./Routes/DoacaoRoute.js";
 import recuperar from "./Routes/usuarioRoutes.js"
 import eventos from "./Routes/EventoRoutes.js"
+import estoqueRoute from './Routes/estoqueRoute.js';
 
 const app = express();
 const port = 3002;
@@ -30,6 +31,7 @@ app.use(Anuncio);
 app.use(Auth);
 app.use(produtos)
 app.use(routes)
+app.use(estoqueRoute)
 app.use(mensalidadeRoutes);
 app.use(comissaoRoutes);
 app.use(frequenciaRoutes);

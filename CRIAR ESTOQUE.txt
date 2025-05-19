@@ -1,0 +1,9 @@
+CREATE TABLE estoque (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_doacao INT NOT NULL,
+  nome_item VARCHAR(100),
+  descricao TEXT,
+  quantidade INT DEFAULT 1,
+  data_entrada DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_doacao) REFERENCES doacoes(id) ON DELETE CASCADE
+);

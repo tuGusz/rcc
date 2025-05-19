@@ -12,42 +12,46 @@ export default function CardsAtalho() {
                 </div>
 
                 <div className="card">
-                <Link to="/associado">
-                    <h3>Cadastrar Associado</h3>
-                </Link>
+                    <Link to="/associado">
+                        <h3>Cadastrar Associado</h3>
+                    </Link>
                 </div>
 
                 <div className="card">
-                <Link to="/comissao">
-                    <h3>Cadastrar Comissões</h3>
-                </Link>
+                    <Link to="/comissao">
+                        <h3>Cadastrar Comissões</h3>
+                    </Link>
                 </div>
 
                 <div className="card">
-                <Link to="/list-campanhas">
-                    <h3>Campanhas Cadastradas</h3>
-                </Link>
+                    <Link to="/list-campanhas">
+                        <h3>Campanhas Cadastradas</h3>
+                    </Link>
                 </div>
 
                 <div className="card">
-                <Link to="/netflix-ta-cara-meus-anjos">
-                    <h3>Cadastrar Despesas</h3> 
-                </Link>
-                
+                    <Link to="/netflix-ta-cara-meus-anjos">
+                        <h3>Cadastrar Despesas</h3> 
+                    </Link>
                 </div>
 
                 <div className="card">
-                <Link to="/gerenciar-tipos-produtos">
-                    <h3>Cadastrar Produtos</h3>
-                </Link>
+                    <Link to="/gerenciar-tipos-produtos">
+                        <h3>Cadastrar Produtos</h3>
+                    </Link>
                 </div>
 
                 <div className="card">
-                     <Link to="/caixas">
-                         <h3>Gerenciar Caixa</h3>
-                     </Link>
-                 </div>
+                    <Link to="/caixas">
+                        <h3>Gerenciar Caixa</h3>
+                    </Link>
+                </div>
 
+                <div className="card">
+                    <Link to="/estoque">
+                        <h3>Estoque</h3>
+                    </Link>
+                </div>
             </div>
         </>
     )
