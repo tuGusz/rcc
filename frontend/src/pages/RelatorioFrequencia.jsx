@@ -78,13 +78,16 @@ const exportarPDF = () => {
 
       <button onClick={buscar}>Buscar</button>
       <button onClick={exportarPDF}>Exportar PDF</button>
-      <ul>
-        {(Array.isArray(relatorio) ? relatorio : []).map((r, idx) => (
-            <li key={idx}>
+    <ul>
+    {(Array.isArray(relatorio) ? relatorio : [])
+        .sort((a, b) => a.nome_associado.localeCompare(b.nome_associado)) // <- ordenação alfabética
+        .map((r, idx) => (
+        <li key={idx}>
             {r.nome_associado} - {r.nome_campanha} - {new Date(r.data_registro).toLocaleDateString()}
-            </li>
+        </li>
         ))}
-     </ul>
+    </ul>
+
 
     </div>
   );
