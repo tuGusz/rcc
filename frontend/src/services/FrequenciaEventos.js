@@ -5,14 +5,14 @@ class RelatorioFrequenciaService {
     return localStorage.getItem("token");
   }
   
-  async buscarRelatorio({ nome, dataInicio, dataFim }) {
+async buscarRelatorio({ nome, dataInicio, dataFim, campanhaId }) {
   const response = await fetch(`${API_BASE_URL}/relatorio-frequencia`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.getToken()}`
     },
-    body: JSON.stringify({ nome, dataInicio, dataFim })
+    body: JSON.stringify({ nome, dataInicio, dataFim, campanhaId })
   });
 
   if (!response.ok) {
