@@ -138,7 +138,7 @@ export default function ListagemCampanha() {
     <div style={{ 
       padding: "20px",
       marginLeft: isMenuOpen ? "250px" : "0px",
-      transition: "margin-left 0.3s ease"
+      transition: "margin-left 0.3s ease" 
     }}> 
     <div className="listagem-campanha-container">
       <h1>Lista de Campanhas</h1>

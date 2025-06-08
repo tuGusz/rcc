@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.8.4",
     "express": "^4.21.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.25",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.503.0",
     "mysql2": "^3.11.4",

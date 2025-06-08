@@ -1,4 +1,6 @@
 import Frequencia from '../Model/Entidades/frequenciaModel.js';
+import Associado from '../Model/Entidades/Associado.js';
+import { Op } from 'sequelize';
 import { User } from '../Model/Entidades/userModel.js';
 
 class FrequenciaController {
@@ -53,6 +55,50 @@ class FrequenciaController {
             res.status(500).json({ error: 'Erro ao obter usuários' });
         }
     }
+
+    async relatorioFrequencia(req, res)  {
+    //   try {
+    //   const { nome, dataInicio, dataFim } = req.query;
+
+    //   const whereAssociado = nome ? {
+    //     nome: {
+    //       [Op.like]: `%${nome}%`
+    //     }
+    //   } : {};
+
+    //   const whereFrequencia = {};
+
+    //   if (dataInicio && dataFim) {
+    //     whereFrequencia.data = {
+    //       [Op.between]: [new Date(dataInicio), new Date(dataFim)]
+    //     };
+    //   }
+
+    //   const resultado = await Frequencia.findAll({
+    //     include: [{
+    //       model: Associado,
+    //       where: whereAssociado,
+    //       attributes: ['nome']
+    //     }],
+    //     where: whereFrequencia
+    //   });
+
+    //   res.json(resultado);
+    // } catch (err) {
+    //   console.error(err);
+    //   res.status(500).json({ erro: 'Erro ao buscar relatório de frequência' });
+    // }
+
+    const { nome, dataInicio, dataFim } = req.query;
+
+    try {
+        const dados = await Frequencia.buscarRelatorioPorNomeEPeriodo(nome, dataInicio, dataFim);
+        res.status(200).json(dados);
+    } catch (error) {
+        console.error("Erro no relatório de frequência:", error.message);
+        res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 export default FrequenciaController;

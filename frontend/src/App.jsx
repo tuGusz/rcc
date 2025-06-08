@@ -19,7 +19,8 @@ import Caixas from './pages/Caixas';
 import Recuperar from './pages/RecuperarSenha';
 import Frequencia from './pages/RegistrarFrequencia';
 import Reunioes from './pages/Eventos';
-import Estoque from './pages/Estoque'; // ✅ Novo import do Estoque
+import Estoque from './pages/Estoque';  
+import RelatorioFrequencia from './pages/RelatorioFrequencia';  
 
 import './App.css';
 
@@ -55,6 +56,7 @@ function App() {
               <Route path="/comissao" element={user ? <Comissao /> : <Navigate to="/login" />} />
               <Route path="/caixas" element={user ? <Caixas /> : <Navigate to="/login" />} />
               <Route path="/eventos" element={user ? <Reunioes /> : <Navigate to="/login" />} />
+              <Route path="/relatorios" element={user ? <RelatorioFrequencia /> : <Navigate to="/login" />} />
               <Route path="/estoque" element={user ? <Estoque /> : <Navigate to="/login" />} /> {/* ✅ Nova rota protegida */}
             </Routes>
           </div>

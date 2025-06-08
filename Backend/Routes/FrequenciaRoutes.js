@@ -8,5 +8,7 @@ const freque = new FrequenciaController();
 router.post("/frequencia", autenticarToken, freque.registrarFrequencia);
 router.get("/frequencia/:eventoId", autenticarToken, freque.listarFrequencias);
 router.get("/usuarios", autenticarToken, freque.getAllUsersMeusAmores);
+router.post('/relatorio-frequencia', autenticarToken, freque.relatorioFrequencia);
+
 
 export default router;  

@@ -53,6 +53,49 @@ class Frequencia {
             throw new Error('Erro ao listar frequências: ' + error.message);
         }
     }
+
+     static async buscarRelatorioPorNomeEPeriodo(nome = '', dataInicio, dataFim) {
+    try {
+        let query = `
+        SELECT 
+            a.nome AS nome_associado,
+            a.cpf,
+            f.data_registro,
+            c.c_nome AS nome_campanha
+        FROM 
+            frequencias f
+        JOIN 
+            associados a ON f.cpf_associado = a.cpf
+        JOIN 
+            campanha c ON f.campanha_id = c.c_id
+        WHERE 1=1
+        `;
+
+        const params = [];
+
+        if (nome && nome.trim() !== '') {
+        query += ' AND a.nome LIKE ?';
+        params.push(`%${nome.trim()}%`);
+        }
+
+        if (dataInicio && dataFim) {
+        query += ' AND f.data_registro BETWEEN ? AND ?';
+        params.push(dataInicio, dataFim);
+        }
+
+        query += ' ORDER BY f.data_registro DESC';
+
+        console.log('DEBUG QUERY:', query);
+        console.log('DEBUG PARAMS:', params);
+
+        const rows = await database.ExecutaComando(query, params);
+        return rows;
+    } catch (error) {
+        throw new Error('Erro ao buscar relatório de frequência: ' + error.message);
+    }
+    }
+
+
 }
 
 export default Frequencia;
