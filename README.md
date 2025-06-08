@@ -34,14 +34,14 @@ A estrutura do repositório foi organizada para facilitar a navegação e entend
 A estrutura do repositório foi organizada para facilitar a navegação e entendimento do projeto:
 ```text
 📦 rrc/
-├── 📁 Backend/                 # Backend do sistema (API Node.js)
+├── 📁 Backend/                # Backend do sistema (API Node.js)
 │   ├── 📁 Controller/         # Controladores das rotas
 │   ├── 📁 Model/              # Definição dos modelos de dados
 │   ├── 📁 Routes/             # Definição de rotas da API
 │   ├── 📁 Services/           # Lógica de negócio e serviços
 │   ├── 📄 server.js           # Ponto de entrada da aplicação backend
 │   ├── 📄 .env                # Variáveis de ambiente (ocultas)
-│   └── 📄 package.json        # Dependências e scripts do backend
+│  
 │
 ├── 📁 frontend/               # Frontend da aplicação (React)
 │   ├── 📁 public/             # Recursos públicos do frontend
@@ -52,7 +52,5 @@ A estrutura do repositório foi organizada para facilitar a navegação e entend
 ├── 📄 rotaract_db.SQL         # Script SQL com estrutura do banco de dados
 ├── 📄 estrutura.txt           # Documento com estrutura do projeto ou tabelas
 ├── 📄 CRIAR TABELA *.txt      # Scripts separados para criação de tabelas no banco
-├── 📄 .gitignore              # Arquivos/pastas ignorados pelo Git
-
 
 
