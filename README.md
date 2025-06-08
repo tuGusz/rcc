@@ -27,10 +27,6 @@ O sistema segue os princípios da LGPD e incorpora boas práticas de segurança 
 ---
 
 ## 📁 Organização do Repositório
-
-A estrutura do repositório foi organizada para facilitar a navegação e entendimento do projeto:
-## 📁 Organização do Repositório
-
 A estrutura do repositório foi organizada para facilitar a navegação e entendimento do projeto:
 ```text
 📦 rrc/
