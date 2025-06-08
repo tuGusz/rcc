@@ -29,8 +29,12 @@ O sistema segue os princípios da LGPD e incorpora boas práticas de segurança 
 ## 📁 Organização do Repositório
 
 A estrutura do repositório foi organizada para facilitar a navegação e entendimento do projeto:
+## 📁 Organização do Repositório
+
+A estrutura do repositório foi organizada para facilitar a navegação e entendimento do projeto:
+```text
 📦 rrc/
-├── 📁 Backend/                # Backend do sistema (API Node.js)
+├── 📁 Backend/                 # Backend do sistema (API Node.js)
 │   ├── 📁 Controller/         # Controladores das rotas
 │   ├── 📁 Model/              # Definição dos modelos de dados
 │   ├── 📁 Routes/             # Definição de rotas da API
@@ -49,5 +53,6 @@ A estrutura do repositório foi organizada para facilitar a navegação e entend
 ├── 📄 estrutura.txt           # Documento com estrutura do projeto ou tabelas
 ├── 📄 CRIAR TABELA *.txt      # Scripts separados para criação de tabelas no banco
 ├── 📄 .gitignore              # Arquivos/pastas ignorados pelo Git
+
 
 
