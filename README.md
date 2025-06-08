@@ -46,8 +46,7 @@ A estrutura do repositório foi organizada para facilitar a navegação e entend
 ├── 📁 frontend/               # Frontend da aplicação (React)
 │   ├── 📁 public/             # Recursos públicos do frontend
 │   ├── 📁 src/                # Código-fonte principal do React
-│   ├── 📄 package.json        # Dependências e scripts do frontend
-│   └── 📄 README.md           # Documentação do frontend
+│   
 │
 ├── 📄 rotaract_db.SQL         # Script SQL com estrutura do banco de dados
 ├── 📄 estrutura.txt           # Documento com estrutura do projeto ou tabelas
