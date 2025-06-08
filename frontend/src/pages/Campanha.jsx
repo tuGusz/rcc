@@ -2,8 +2,7 @@ import React, { useState, useContext } from 'react';
 import { MenuContext } from "../context/MenuContext";
 import './Campanha.css';
 import CampanhaService from '../services/CampanhaService';
-// Remova o 'new' aqui
-const campanhaService = new CampanhaService(); // Importe diretamente a instância exportada
+const campanhaService = new CampanhaService();  
 
 export default function Campanha() {
   const { isMenuOpen } = useContext(MenuContext);

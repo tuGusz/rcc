@@ -89,10 +89,10 @@ class FrequenciaController {
     //   res.status(500).json({ erro: 'Erro ao buscar relatório de frequência' });
     // }
 
-    const { nome, dataInicio, dataFim } = req.query;
+  const { nome, dataInicio, dataFim, campanhaId } = req.body;
 
     try {
-        const dados = await Frequencia.buscarRelatorioPorNomeEPeriodo(nome, dataInicio, dataFim);
+        const dados = await Frequencia.buscarRelatorioPorNomeEPeriodo(nome, dataInicio, dataFim, campanhaId);
         res.status(200).json(dados);
     } catch (error) {
         console.error("Erro no relatório de frequência:", error.message);

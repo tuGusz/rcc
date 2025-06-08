@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import RelatorioFrequenciaService from '../services/FrequenciaEventos';
-import campanhaService from '../services/CampanhaService';  
+import CampanhaService from '../services/CampanhaService';  
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; 
 
+const campanhaService = new CampanhaService();  
 
 export default function RelatorioFrequencia() {
   const [nome, setNome] = useState('');
@@ -16,7 +17,7 @@ const [campanhas, setCampanhas] = useState([]);
     const buscar = async () => {
         try {
             const dados = await RelatorioFrequenciaService.buscarRelatorio({ nome, dataInicio, dataFim, campanhaId });
-            console.log("DEBUG envio:", { nome, dataInicio, dataFim, campanhaId });
+            console.log("DEBUG envio:", { nome, dataInicio, dataFim, campanhaId: campanhaId ? Number(campanhaId) : ''  });
             console.log('Retorno da API:', dados);
             setRelatorio(dados.rows);
         } catch (err) {
@@ -66,14 +67,14 @@ const exportarPDF = () => {
       <input type="date" value={dataInicio} onChange={e => setDataInicio(e.target.value)} />
       <input type="date" value={dataFim} onChange={e => setDataFim(e.target.value)} />
       <label>Filtrar por campanha:</label>
-<select value={campanhaId} onChange={(e) => setCampanhaId(e.target.value)}>
-  <option value="">Todas as campanhas</option>
-  {campanhas.map((campanha) => (
-    <option key={campanha.c_id} value={campanha.c_id}>
-      {campanha.c_nome}
-    </option>
-  ))}
-</select>
+     <select value={campanhaId} onChange={(e) => setCampanhaId(e.target.value)}>
+     <option value="">Todas as campanhas</option>
+        {campanhas.map((campanha) => (
+            <option key={campanha.c_id} value={campanha.c_id}>
+            {campanha.c_nome}
+            </option>
+        ))}
+        </select>
 
       <button onClick={buscar}>Buscar</button>
       <button onClick={exportarPDF}>Exportar PDF</button>

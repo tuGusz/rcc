@@ -84,9 +84,10 @@ class Frequencia {
     }
 
     if (campanhaId && campanhaId !== '') {
-      query += ' AND c.c_id = ?';
-      params.push(campanhaId);
+        query += ' AND c.c_id = ?';
+        params.push(Number(campanhaId));  
     }
+
 
     query += ' ORDER BY f.data_registro DESC';
 

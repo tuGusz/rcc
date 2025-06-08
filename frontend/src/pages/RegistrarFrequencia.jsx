@@ -47,7 +47,7 @@ export default function RegistrarFrequenciaComponent() {
     try {
       const response = await api.post('/frequencia', {
         campanhaId: selectedCampanha,
-        usuarioId: selectedUsuario   // Usando o usuario selecionado pelo admin
+        usuarioId: selectedUsuario   
       });
       alert('Frequência registrada com sucesso!', response);
     } catch (error) {
