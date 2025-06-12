@@ -76,3 +76,62 @@ CREATE TABLE IF NOT EXISTS doacoes (
     data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE estoque (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_doacao INT NOT NULL,
+  nome_item VARCHAR(100),
+  descricao TEXT,
+  quantidade INT DEFAULT 1,
+  data_entrada DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_doacao) REFERENCES doacoes(id) ON DELETE CASCADE
+);
+
+CREATE TABLE caixas (
+    id_caixa INT(11) NOT NULL AUTO_INCREMENT,
+    data_abertura DATETIME NOT NULL,
+    data_fechamento DATETIME DEFAULT NULL,
+    valor_inicial DECIMAL(10,2) NOT NULL,
+    valor_final DECIMAL(10,2) DEFAULT NULL,
+    status VARCHAR(20) NOT NULL,
+    id_gestao INT(11) NOT NULL,
+    PRIMARY KEY (id_caixa)
+);
+
+CREATE TABLE caixa_movimentacoes (
+    id_movimentacao INT(11) NOT NULL AUTO_INCREMENT,
+    id_caixa INT(11) NOT NULL,
+    tipo ENUM('adicionar', 'retirar') NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    data_movimentacao DATETIME DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY (id_movimentacao),
+    FOREIGN KEY (id_caixa) REFERENCES caixas(id_caixa)
+);
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password_hash` varchar(255) DEFAULT NULL,
+  `role` enum('Administrador','Moderador','Membro') DEFAULT 'Membro',
+  `reset_password_token` varchar(255) DEFAULT NULL,
+  `reset_password_expires` DATETIME DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+)
+
+CREATE TABLE eventos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT NOT NULL,
+    local VARCHAR(255) NOT NULL,
+    data_inicio DATETIME NOT NULL,
+    data_fim DATETIME,
+    obrigatorio BOOLEAN NOT NULL,
+    criado_por INT,  
+    data_criacao datetime DEFAULT current_timestamp,
+    atualizado_por INT, 
+    data_atualizacao datetime ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (criado_por) REFERENCES user(id),
+    FOREIGN KEY (atualizado_por) REFERENCES user(id)
+);
