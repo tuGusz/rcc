@@ -4,52 +4,53 @@ const database = new db();
 
 
 class Frequencia {
-    static async registrar(cpfAssociado, campanhaId) {
+   static async registrar(usuarioId, campanhaId) {
         try {
-            // Verifica se o associado existe
-           const associados = await database.ExecutaComando(
-              'SELECT * FROM associados WHERE cpf = ?',
-              [cpfAssociado]
+          console.log('Buscando associado com user_id =', usuarioId);
+
+          if (!usuarioId) throw new Error("Usuário não informado");
+
+          const resultado = await database.ExecutaComando(
+              'SELECT * FROM associados WHERE user_id = ?',
+              [Number(usuarioId)]
             );
 
+            const associados = resultado.rows;
+
             if (!Array.isArray(associados) || associados.length === 0) {
-              throw new Error('Associado não encontrado');
+              throw new Error('Associado não encontrado para o usuário informado');
             }
 
-            const associado = associados[0];
+          const cpfAssociado = associados[0].cpf;
 
-            if (!associado.length) throw new Error('Associado não encontrado');
-
-            const campanhas = await database.ExecutaComando(
+      
+          const campanhas = await database.ExecutaComando(
             'SELECT * FROM campanha WHERE c_id = ?',
             [campanhaId]
           );
 
-          if (!Array.isArray(campanhas) || campanhas.length === 0) {
+          const camp = campanhas.rows
+          if (!Array.isArray(camp) || camp.length === 0) {
             throw new Error('Campanha não encontrada');
           }
 
-          const campanha = campanhas[0];
+          const result = await database.ExecutaComando(
+            'INSERT INTO frequencias (cpf_associado, campanha_id) VALUES (?, ?)',
+            [cpfAssociado, campanhaId]
+          );
 
-            const result = await database.ExecutaComando(
-      'INSERT INTO frequencias (cpf_associado, campanha_id) VALUES (?, ?)',
-      [cpfAssociado, campanhaId]
-    );
-
-    // Verifica se result tem insertId:
-    const id = result?.insertId || null;
-
-            return {
-                id: result.insertId,
-                cpfAssociado,
-                campanhaId,
-                dataRegistro: new Date()
-            };
+          return {
+            id: result?.insertId,
+            cpfAssociado,
+            campanhaId,
+            dataRegistro: new Date()
+          };
         } catch (error) {
-            throw new Error('Erro ao registrar frequência: ' + error.message);
+          console.error("Erro detalhado:", error);
+          throw new Error('Erro ao registrar frequência: ' + error.message);
         }
     }
-
+  
  
     static async listarPorCampanha(campanhaId) {
         try {
