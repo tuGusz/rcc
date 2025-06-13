@@ -69,26 +69,36 @@ export const login = async (req, res) => {
   }
 };
 
-// Função para criar novo usuário
 export const createUser = async (req, res) => {
-  const { email, nome, password, role } = req.body;
-  
-  // Verifica se o usuário logado tem a role "Administrador"
+  const { email, nome, password, role, cpf_associado } = req.body;
+
   if (req.usuario.role !== 'Administrador') {
     return res.status(403).json({ error: "Você não tem permissão para cadastrar novos usuários." });
   }
 
   try {
-    // Verifica se o email já está cadastrado
     const existingUser = await User.getUserByEmail(email);
     if (existingUser) {
       return res.status(400).json({ error: "Email já cadastrado." });
     }
 
-    // Cria o novo usuário
-    await authServices.registerUser(nome, email, password, role);
-    res.status(201).json({ message: "Usuário criado com sucesso" });
+    const newUser = await authServices.registerUser(nome, email, password, role);
+
+    // Tenta vincular o associado
+    if (cpf_associado) {
+      try {
+        await User.vincularAssociado(cpf_associado, newUser.id);
+      } catch (vinculoErro) {
+        // Se falhar, deleta o usuário para não deixar lixo
+        await User.excluir(newUser.id);
+        return res.status(400).json({ error: vinculoErro.message });
+      }
+    }
+
+    res.status(201).json({ message: "Usuário criado e associado com sucesso" });
+
   } catch (error) {
     res.status(400).json({ error: "Erro ao salvar o usuário: " + error.message });
   }
 };
+

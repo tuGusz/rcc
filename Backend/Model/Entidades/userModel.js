@@ -27,6 +27,9 @@ export class User {
    * @param {string} [obj.role="Membro"] - O role do usuário.
    * @param {string | null} [obj.reset_password_token=null] - Token para reset de senha
    * @param {Date | null} [obj.reset_password_expires=null] - Data de expiração do token
+   * @param {string} cpf - CPF do associado
+  *  @param {number} userId - ID do usuário recém-criado
+  *  @returns {Promise<void>}
    */
   constructor({
     id = 0,
@@ -151,12 +154,51 @@ export class User {
       // Depuração: Verificar o que está sendo retornado
       console.log("Resultado da query:", result);
 
-      if (!this.id && result && result.insertId) {
-        this.id = result.insertId;
+     if (!this.id && result?.rows?.insertId) {
+        this.id = result.rows.insertId;
       }
+
     } catch (err) {
       console.error("Erro ao salvar o usuário:", err);
       throw new Error("Erro ao salvar o usuário: " + err.message);
+    }
+  }
+
+  /**
+   * Atualiza a tabela associados, vinculando o userId ao cpf do associado
+   * @param {string} cpf - CPF do associado
+   * @param {number} userId - ID do usuário recém-criado
+   * @returns {Promise<void>}
+   */
+  static async vincularAssociado(cpf, userId) {
+    if (!cpf || !userId) {
+      throw new Error("CPF e userId são obrigatórios para vincular o associado.");
+    }
+
+    try {
+      const result = await database.ExecutaComando(
+        "SELECT user_id FROM associados WHERE cpf = ?",
+        [cpf]
+      );
+
+      const associado = result.rows?.[0]; 
+
+      if (associado?.user_id) {
+        throw new Error("Este associado já está vinculado a um usuário.");
+      }
+
+      const updateResult = await database.ExecutaComando(
+        "UPDATE associados SET user_id = ? WHERE cpf = ?",
+        [userId, cpf]
+      );
+
+      if (updateResult.affectedRows === 0) {
+        throw new Error("CPF inválido ou não encontrado.");
+      }
+
+    } catch (err) {
+      console.error("Erro ao vincular associado:", err);
+      throw new Error("Erro ao vincular o associado ao usuário.");
     }
   }
 

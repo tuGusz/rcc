@@ -21,13 +21,14 @@ const registerUser = async (nome, email, password, role = "Membro") => {
   const password_hash = await bcrypt.hash(password, 10);
   const user = new User({ nome, email, password_hash, role });
   await user.save();
-  return user;
+ 
+  return user; // ← ESSENCIAL para obter o ID depois
 };
 
 // Função para realizar o login do usuário
 const login = async (email, password) => {
   const user = await User.getUserByEmail(email);
-
+ 
   if (!user) {
     throw new Error("Usuário ou senha incorretos");
   }

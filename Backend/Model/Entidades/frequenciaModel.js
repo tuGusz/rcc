@@ -7,24 +7,37 @@ class Frequencia {
     static async registrar(cpfAssociado, campanhaId) {
         try {
             // Verifica se o associado existe
-            const [associado] = await database.ExecutaComando(
-                'SELECT * FROM associados WHERE cpf = ?',
-                [cpfAssociado]
+           const associados = await database.ExecutaComando(
+              'SELECT * FROM associados WHERE cpf = ?',
+              [cpfAssociado]
             );
+
+            if (!Array.isArray(associados) || associados.length === 0) {
+              throw new Error('Associado não encontrado');
+            }
+
+            const associado = associados[0];
+
             if (!associado.length) throw new Error('Associado não encontrado');
 
-            // Verifica se a campanha existe
-            const [campanha] = await database.ExecutaComando(
-                'SELECT * FROM campanha WHERE c_id = ?',
-                [campanhaId]
-            );
-            if (!campanha.length) throw new Error('Campanha não encontrada');
+            const campanhas = await database.ExecutaComando(
+            'SELECT * FROM campanha WHERE c_id = ?',
+            [campanhaId]
+          );
 
-            // Registra a frequência no banco de dados
-            const [result] = await database.ExecutaComando(
-                'INSERT INTO frequencias (cpf_associado, campanha_id) VALUES (?, ?)',
-                [cpfAssociado, campanhaId]
-            );
+          if (!Array.isArray(campanhas) || campanhas.length === 0) {
+            throw new Error('Campanha não encontrada');
+          }
+
+          const campanha = campanhas[0];
+
+            const result = await database.ExecutaComando(
+      'INSERT INTO frequencias (cpf_associado, campanha_id) VALUES (?, ?)',
+      [cpfAssociado, campanhaId]
+    );
+
+    // Verifica se result tem insertId:
+    const id = result?.insertId || null;
 
             return {
                 id: result.insertId,
