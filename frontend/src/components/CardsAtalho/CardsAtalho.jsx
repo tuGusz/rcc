@@ -49,7 +49,7 @@ export default function CardsAtalho() {
 
                 <div className="card">
                     <Link to="/estoque">
-                        <h3>Estoque</h3>
+                        <h3>Gerenciar Estoque</h3>
                     </Link>
                 </div>
             </div>

@@ -13,7 +13,6 @@ export default function Cadastro() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [role, setRole] = useState("Membro");
     const [cpfAssociado, setCpfAssociado] = useState('');
-    const [emailAssociado, setEmailAssociado] = useState('');
     const [nomeBloqueado, setNomeBloqueado] = useState(false);
     const [emailbloqueado, setemailBloqueado] = useState(false);
     const [associadosDisponiveis, setAssociadosDisponiveis] = useState([]);
