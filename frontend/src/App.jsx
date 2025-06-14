@@ -25,7 +25,7 @@ import RelatorioFrequencia from './pages/RelatorioFrequencia';
 import './App.css';
 
 function App() {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, isAdmin, isModerator } = useContext(AuthContext);
 
   useEffect(() => {
     if (loading) return;
@@ -40,25 +40,28 @@ function App() {
           {user && <MenuHamburguer />}
 
           <div className="main-content">
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/recuperar-senha" element={<Recuperar />} />
-              <Route path="/cadastro" element={user && user.role === "Administrador" ? <Cadastro /> : <Navigate to="/login" />} />
-              <Route path="/registrar-frequencia" element={user ? <Frequencia /> : <Navigate to="/login" />} />
-              <Route path="/" element={user ? <CardsAtalho /> : <Navigate to="/login" />} />
-              <Route path="/registrar-doacao" element={user ? <RegistroDoacao /> : <Navigate to="/login" />} />
-              <Route path="/listar-doacao" element={user ? <ListaDoacoes /> : <Navigate to="/login" />} />
-              <Route path="/campanha" element={user ? <Campanha /> : <Navigate to="/login" />} />
-              <Route path="/list-campanhas" element={user ? <ListagemCampanha /> : <Navigate to="/login" />} />
-              <Route path="/gerenciar-tipos-produtos" element={user ? <GerenciarProdutos /> : <Navigate to="/login" />} />
-              <Route path="/netflix-ta-cara-meus-anjos" element={user ? <GerenciarMensalidades /> : <Navigate to="/login" />} />
-              <Route path="/associado" element={user ? <FormAssociados /> : <Navigate to="/login" />} />
-              <Route path="/comissao" element={user ? <Comissao /> : <Navigate to="/login" />} />
-              <Route path="/caixas" element={user ? <Caixas /> : <Navigate to="/login" />} />
-              <Route path="/eventos" element={user ? <Reunioes /> : <Navigate to="/login" />} />
-              <Route path="/relatorios" element={user ? <RelatorioFrequencia /> : <Navigate to="/login" />} />
-              <Route path="/estoque" element={user ? <Estoque /> : <Navigate to="/login" />} /> {/* ✅ Nova rota protegida */}
-            </Routes>
+           <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/recuperar-senha" element={<Recuperar />} />
+
+            <Route path="/cadastro" element={isAdmin() ? <Cadastro /> : <Navigate to="/login" />} />
+            <Route path="/caixas" element={isAdmin() ? <Caixas /> : <Navigate to="/login" />} />
+
+            <Route path="/campanha" element={(isAdmin() || isModerator()) ? <Campanha /> : <Navigate to="/login" />} />
+            <Route path="/list-campanhas" element={(isAdmin() || isModerator()) ? <ListagemCampanha /> : <Navigate to="/login" />} />
+            <Route path="/gerenciar-tipos-produtos" element={(isAdmin() || isModerator()) ? <GerenciarProdutos /> : <Navigate to="/login" />} />
+            <Route path="/netflix-ta-cara-meus-anjos" element={(isAdmin() || isModerator()) ? <GerenciarMensalidades /> : <Navigate to="/login" />} />
+            <Route path="/associado" element={(isAdmin() || isModerator()) ? <FormAssociados /> : <Navigate to="/login" />} />
+            <Route path="/comissao" element={(isAdmin() || isModerator()) ? <Comissao /> : <Navigate to="/login" />} />
+            <Route path="/eventos" element={(isAdmin() || isModerator()) ? <Reunioes /> : <Navigate to="/login" />} />
+            <Route path="/relatorios" element={(isAdmin() || isModerator()) ? <RelatorioFrequencia /> : <Navigate to="/login" />} />
+            <Route path="/estoque" element={(isAdmin() || isModerator()) ? <Estoque /> : <Navigate to="/login" />} />
+
+            <Route path="/" element={user ? <CardsAtalho /> : <Navigate to="/login" />} />
+            <Route path="/registrar-frequencia" element={user ? <Frequencia /> : <Navigate to="/login" />} />
+            <Route path="/registrar-doacao" element={user ? <RegistroDoacao /> : <Navigate to="/login" />} />
+            <Route path="/listar-doacao" element={user ? <ListaDoacoes /> : <Navigate to="/login" />} />
+          </Routes>
           </div>
         </div>
       </Router>

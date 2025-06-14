@@ -50,8 +50,23 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  // 👇 Adicionado: funções para verificar papel do usuário
+  const isAdmin = () => user?.role === 'Administrador';
+  const isModerator = () => user?.role === 'Moderador';
+  const isMember = () => user?.role === 'Membro';
+  const hasRole = (role) => user?.role === role;
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      login, 
+      logout, 
+      loading,
+      isAdmin,
+      isModerator,
+      isMember,
+      hasRole
+    }}>
       {children}
     </AuthContext.Provider>
   );
