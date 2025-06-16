@@ -43,14 +43,15 @@ export default function MenuHamburguer() {
               <Link to="/netflix-ta-cara-meus-anjos" className="link-hamburg"><li>Cadastrar Despesas</li></Link>
               {/* <li>Cadastrar Cargos</li> */}
               <Link to="/gerenciar-tipos-produtos" className="link-hamburg"><li>Cadastrar Produtos</li></Link>
-              <Link to="/estoque" className="link-hamburg"><li>Gerenciar Estoque</li></Link>
+             <Link to="/cadastro" className="link-hamburg"><li>Cadastrar Usuário</li></Link>
             </>
           )}
-
+      <div className='side-cabecalho'></div>
           {isAdmin() && (
             <>
+                <Link to="/estoque" className="link-hamburg"><li>Gerenciar Estoque</li></Link>
               <Link to="/caixas" className="link-hamburg"><li>Gerenciar Caixa</li></Link>
-              <Link to="/cadastro" className="link-hamburg"><li>Cadastrar Usuário</li></Link>
+         
             </>
           )}
 
