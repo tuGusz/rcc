@@ -2,7 +2,7 @@ import api from '../services/api';
 
 class CampanhaService {
   // Obter todas as campanhas
-  async nobterTodasCampanhas() {
+  async obterTodasCampanhas() {
     const response = await api.get('/campanhas');
     return response.data;
   }

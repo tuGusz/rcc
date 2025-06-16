@@ -5,7 +5,7 @@ import { User } from '../Model/Entidades/userModel.js';
 
 class FrequenciaController {
     async registrarFrequencia(req, res) {
-        const { campanhaId } = req.body;
+        const { campanhaId, usuarioId } = req.body;
         const { role, id: userId } = req.usuario; 
     
         console.log("Registrar Frequencia - req.body:", req.body);
@@ -15,9 +15,9 @@ class FrequenciaController {
         try {
           if (role === 'Administrador') {
             console.log("Registrar Frequencia - Administrador pode registrar qualquer frequência");
-            const frequencia = await Frequencia.registrar(userId, campanhaId);
+            const frequencia = await Frequencia.registrar(usuarioId, campanhaId);
             res.status(200).json(frequencia);
-          } else if (role === 'Membro') {
+          } else if (role === 'Membro' | role == 'Moderador') {
             console.log("Registrar Frequencia - Membro só pode registrar a própria frequência");
             const frequencia = await Frequencia.registrar(userId, campanhaId);
             res.status(200).json(frequencia);
